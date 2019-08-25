@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 namespace GestaoConsultorioMedico.Controllers
 {
     [Route("api/[controller]")]
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         [HttpPost]
         [AllowAnonymous]
-        public String Login(
+        public Object Login(
             [FromBody]UsuarioFake usuario,
             [FromServices]ConfiguracoesDeSegurancaSingleton configuracoesDeSeguranca)
         {
@@ -27,16 +27,14 @@ namespace GestaoConsultorioMedico.Controllers
                 String.IsNullOrWhiteSpace(usuario.Nome) ||
                 String.IsNullOrWhiteSpace(usuario.Senha))
             {
-                Response.StatusCode = 400;
-                return "Requisição inválida.";
+                return enviarBadRequest();
             }
 
             usuarioFake = UsuarioFake.UsuarioExiste(usuario);
 
             if (usuarioFake == null)
             {
-                Response.StatusCode = 401;
-                return "Usuário não autenticado.";
+                return enviarUnauthorized();
             }
 
             // Fachada que implementa a geração de tokens com base nas configurações de segurança e no usuário logado.

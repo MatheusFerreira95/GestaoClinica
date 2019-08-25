@@ -9,7 +9,7 @@ namespace GestaoConsultorioMedico.Controllers
 {
     [Route("api/[controller]")]
     [Authorize("Bearer")]
-    public class SampleDataController : Controller
+    public class SampleDataController : BaseController
     {
         private static string[] Summaries = new[]
         {
