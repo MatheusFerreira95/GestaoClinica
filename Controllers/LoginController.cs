@@ -38,7 +38,10 @@ namespace GestaoConsultorioMedico.Controllers
             }
 
             // Fachada que implementa a geração de tokens com base nas configurações de segurança e no usuário logado.
-            return TokenFacade.GerarToken(configuracoesDeSeguranca, usuario);
+            return new
+            {
+                token = TokenFacade.GerarToken(configuracoesDeSeguranca, usuario)
+            };
         }
     }
 }
