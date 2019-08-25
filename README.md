@@ -20,7 +20,7 @@ Acesse o diretório **raiz** e execute os seguintes comandos:
 
 | Comando | Descrição |
 | ------- | ----------- |
-| `dotnet build` | Compilar aplicação |
+| `dotnet build` | Construir dependências e Compilar aplicação |
 | `dotnet run` | Ligar servidor back-end no endereço `http://localhost:5000/` |
 
 ## Executar testes unitários
