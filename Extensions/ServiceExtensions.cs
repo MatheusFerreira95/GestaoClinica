@@ -35,13 +35,9 @@ namespace GestaoConsultorioMedico.Extensions
          * **/
         public static void ConfigurarAutenticacao(this IServiceCollection services)
         {
-            // Criando instância da assinatura com criptografia.
-            var assinatura = new Assinatura();
-            services.AddSingleton(assinatura);
-
-            // Criando instância do token a partir das configurações estabelecidas.
-            var token = new Token();
-            services.AddSingleton(token);
+            // Instanciando configurações de segurança (token e criptografia).
+            ConfiguracoesDeSegurancaSingleton configuracoesDeSeguranca = ConfiguracoesDeSegurancaSingleton.getInstance();
+            services.AddSingleton(configuracoesDeSeguranca);
 
             // Configurando autenticação JWT com Bearer.
             services.AddAuthentication(authOptions =>
@@ -51,9 +47,9 @@ namespace GestaoConsultorioMedico.Extensions
             }).AddJwtBearer(bearerOptions =>
             {
                 var paramsValidation = bearerOptions.TokenValidationParameters;
-                paramsValidation.IssuerSigningKey = assinatura.SecurityKey;
-                paramsValidation.ValidAudience = token.Audience;
-                paramsValidation.ValidIssuer = token.Issuer;
+                paramsValidation.IssuerSigningKey = configuracoesDeSeguranca.SecurityKey;
+                paramsValidation.ValidAudience = configuracoesDeSeguranca.TokenAudience;
+                paramsValidation.ValidIssuer = configuracoesDeSeguranca.TokenIssuer;
                 paramsValidation.ValidateIssuerSigningKey = true;
                 paramsValidation.ValidateLifetime = true;
             });

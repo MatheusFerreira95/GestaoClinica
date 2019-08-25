@@ -19,8 +19,7 @@ namespace GestaoConsultorioMedico.Controllers
         [AllowAnonymous]
         public String Login(
             [FromBody]UsuarioFake usuario,
-            [FromServices]Assinatura assinatura,
-            [FromServices]Token token)
+            [FromServices]ConfiguracoesDeSegurancaSingleton configuracoesDeSeguranca)
         {
             UsuarioFake usuarioFake;
 
@@ -40,32 +39,8 @@ namespace GestaoConsultorioMedico.Controllers
                 return "Usuário não autenticado.";
             }
 
-            // Fachada criar token
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(
-                    new GenericIdentity("Id", "Id"),
-                    new[] {
-                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
-                        new Claim(JwtRegisteredClaimNames.UniqueName, "Id")
-                    }
-                );
-
-            DateTime dataCriacao = DateTime.Now;
-            DateTime dataExpiracao = dataCriacao +
-                TimeSpan.FromSeconds(token.Seconds);
-
-            var handler = new JwtSecurityTokenHandler();
-            var securityToken = handler.CreateToken(new SecurityTokenDescriptor
-            {
-                Issuer = token.Issuer,
-                Audience = token.Audience,
-                SigningCredentials = assinatura.SigningCredentials,
-                Subject = claimsIdentity,
-                NotBefore = dataCriacao,
-                Expires = dataExpiracao
-            });
-            var tokenOK = handler.WriteToken(securityToken);
-
-            return tokenOK;
+            // Fachada que implementa a geração de tokens com base nas configurações de segurança e no usuário logado.
+            return TokenFacade.GerarToken(configuracoesDeSeguranca, usuario);
         }
     }
 }
