@@ -12,6 +12,7 @@ export class LoginComponent {
   login(){
     this.http.post('http://localhost:5000/api/Login', {Nome: 'admin', Senha: 'admin'}).subscribe(result => {
       console.log(result);
+      localStorage.setItem('token', result["token"]);
     }, error => console.error(error));
   }
 }
