@@ -7,9 +7,9 @@ namespace GestaoConsultorioMedico.Extensions.Security
 {
     public class UsuarioFake
     {
-        private string Nome { get; set; }
-        private String Senha { get; set; }
-        private int Id { get; set; }
+        public string Nome { get; set; }
+        public String Senha { get; set; }
+        public int Id { get; set; }
 
         public UsuarioFake(string nome, string senha, int id)
         {
@@ -18,11 +18,11 @@ namespace GestaoConsultorioMedico.Extensions.Security
             this.Id = id;
         }
 
-        public static UsuarioFake UsuarioExiste(string nome, string senha)
+        public static UsuarioFake UsuarioExiste(UsuarioFake usuario)
         {
             UsuarioFake usuarioFake = new UsuarioFake("admin", "admin", 1);
 
-            if (nome.Equals(usuarioFake.Nome) && senha.Equals(usuarioFake.Senha))
+            if (usuario.Nome.Equals(usuarioFake.Nome) && usuario.Senha.Equals(usuarioFake.Senha))
             {
 
                 return usuarioFake;
