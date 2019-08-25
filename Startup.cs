@@ -21,7 +21,9 @@ namespace GestaoConsultorioMedico
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.ConfigureCors();
+            services.ConfigurarCors();
+
+            services.ConfigurarAutenticacao();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

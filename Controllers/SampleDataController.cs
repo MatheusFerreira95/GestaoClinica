@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GestaoConsultorioMedico.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize("Bearer")]
     public class SampleDataController : Controller
     {
         private static string[] Summaries = new[]
