@@ -22,8 +22,9 @@ import { Interceptor } from "./auth/interceptor.module";
     AppMaterialModule,
     Interceptor,
     RouterModule.forRoot([
-      { path: "main", component: MainComponent, pathMatch: "full" },
-      { path: "login", component: LoginComponent }
+      { path: "main", component: MainComponent },
+      { path: "login", component: LoginComponent },
+      { path: "**", redirectTo: "/main" }
     ])
   ],
   providers: [],

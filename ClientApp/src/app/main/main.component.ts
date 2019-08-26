@@ -9,6 +9,15 @@ import { Router } from "@angular/router";
 export class MainComponent {
   constructor(private router: Router) {}
 
+  ngOnInit() {
+    if (
+      !localStorage.getItem("token") ||
+      localStorage.getItem("token") === null
+    ) {
+      this.router.navigate(["/login"]);
+    }
+  }
+
   sair() {
     localStorage.setItem("token", null);
     this.router.navigate(["/login"]);
