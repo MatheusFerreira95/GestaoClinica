@@ -11,15 +11,15 @@ export class MainComponent {
 
   ngOnInit() {
     if (
-      !localStorage.getItem("token") ||
-      localStorage.getItem("token") === null
+      localStorage.getItem("token") == null ||
+      !localStorage.getItem("token")
     ) {
       this.router.navigate(["/login"]);
     }
   }
 
   sair() {
-    localStorage.setItem("token", null);
+    localStorage.removeItem("token");
     this.router.navigate(["/login"]);
   }
 }

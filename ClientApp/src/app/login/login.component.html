@@ -4,17 +4,28 @@
 
     <mat-card-content class="form-login">
       <mat-form-field>
-        <input matInput placeholder="Nome de usuário" type="text" />
+        <input
+          [(ngModel)]="usuario.nome"
+          matInput
+          placeholder="Nome de usuário"
+          type="text"
+        />
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Senha" type="password" />
+        <input
+          [(ngModel)]="usuario.senha"
+          matInput
+          placeholder="Senha"
+          type="password"
+        />
       </mat-form-field>
 
       <button
         class="app-button"
         mat-raised-button
         color="primary"
+        type="submit"
         (click)="login()"
       >
         Entrar
