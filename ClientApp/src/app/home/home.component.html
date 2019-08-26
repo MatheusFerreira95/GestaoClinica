@@ -1,2 +1,42 @@
-<h1>Sistema de Gestão de Consultório Médidco</h1>
-<p>Bem vindo, Administrador</p>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" class="menu" color="primary">
+    <mat-toolbar>
+      <mat-toolbar-row class="text-center">
+        <div class="logo">
+          <img src="../../assets/logo.png" width="150px" />
+        </div>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row>
+        <mat-icon class="icone">home</mat-icon>
+        <span>Home</span>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row>
+        <mat-icon class="icone">assignment_ind</mat-icon>
+        <span>Médicos</span>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row>
+        <mat-icon class="icone">business</mat-icon>
+        <span>Consultórios</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <button mat-button class="app-menu-button" (click)="sidenav.toggle()">
+      <i class="material-icons">menu</i>
+    </button>
+    <span class="title">Gestão de Consultório Médico</span>
+  </mat-toolbar>
+
+  <div class="conteudo">
+    <mat-card>
+      <mat-card-content>
+        <h2 class="example-h2">Saudação</h2>
+        <p>Bem vindo!</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</mat-sidenav-container>

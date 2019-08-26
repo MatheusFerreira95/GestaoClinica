@@ -1,0 +1,22 @@
+.menu {
+  min-width: 200px;
+  height: 100%;
+
+  mat-toolbar-row > span {
+    font-size: 13px;
+  }
+}
+
+.item-menu {
+  flex: 1 1 auto;
+}
+
+.conteudo {
+  padding: 20px;
+}
+
+.logo {
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+}
