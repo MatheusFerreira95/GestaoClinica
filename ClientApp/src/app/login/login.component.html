@@ -1,12 +1,27 @@
-<form class="form-signin">
-    <h1 class="h3 mb-4 font-weight-normal text-center">Acessar</h1>
+<div class="conteudo">
+  <mat-card class="card-login">
+    <h2>Acessar</h2>
 
-    <label class="sr-only">Usuário</label>
-    <input type="text" class="form-control" placeholder="Nome de usuáio" required autofocus>
-    
-    <label class="sr-only">Senha</label>
-    <input type="password" class="form-control" placeholder="Senha" required>
-    
-    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login()">Entrar</button>
-    <p class="mt-8 mb-8 text-muted">&copy; Sistema de Gestão de Consultório Médico</p>
-  </form>
+    <mat-card-content class="form-login">
+      <mat-form-field>
+        <input matInput placeholder="Nome de usuário" type="text" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Senha" type="password" />
+      </mat-form-field>
+
+      <button
+        class="app-button"
+        mat-raised-button
+        color="primary"
+        (click)="login()"
+      >
+        Entrar
+      </button>
+      <p class="mt-8 mb-8 text-muted">
+        &copy; Sistema de Gestão de Consultório Médico
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

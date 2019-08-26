@@ -6,14 +6,14 @@ import { RouterModule } from "@angular/router";
 import { AppMaterialModule } from "./app.material.module";
 
 import { AppComponent } from "./app.component";
-import { HomeComponent } from "./home/home.component";
+import { MainComponent } from "./main/main.component";
 import { LoginComponent } from "./login/login.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { Interceptor } from "./auth/interceptor.module";
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent],
+  declarations: [AppComponent, MainComponent, LoginComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
     HttpClientModule,
@@ -22,7 +22,7 @@ import { Interceptor } from "./auth/interceptor.module";
     AppMaterialModule,
     Interceptor,
     RouterModule.forRoot([
-      { path: "home", component: HomeComponent, pathMatch: "full" },
+      { path: "main", component: MainComponent, pathMatch: "full" },
       { path: "login", component: LoginComponent }
     ])
   ],

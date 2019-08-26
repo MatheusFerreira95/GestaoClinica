@@ -1,0 +1,47 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" class="menu" color="primary">
+    <mat-toolbar>
+      <div class="logo">
+        <img src="../../assets/logo.png" width="150px" />
+      </div>
+
+      <mat-toolbar-row>
+        <span>main</span>
+        <span class="espacamento-horizontal"></span>
+        <mat-icon class="icone">main</mat-icon>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row>
+        <span>Médicos</span>
+        <span class="espacamento-horizontal"></span>
+        <mat-icon class="icone">assignment_ind</mat-icon>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row>
+        <span>Consultórios</span>
+        <span class="espacamento-horizontal"></span>
+        <mat-icon class="icone">business</mat-icon>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </mat-sidenav>
+
+  <mat-toolbar color="primary">
+    <button mat-button (click)="sidenav.toggle()">
+      <i class="material-icons">menu</i>
+    </button>
+    <span>Gestão de Consultório Médico</span>
+    <span class="espacamento-horizontal"></span>
+    <button mat-button (click)="sair()">
+      <i class="material-icons">exit_to_app</i>
+    </button>
+  </mat-toolbar>
+
+  <div class="conteudo">
+    <mat-card>
+      <mat-card-content>
+        <h2>Saudação</h2>
+        <p>Bem vindo!</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</mat-sidenav-container>

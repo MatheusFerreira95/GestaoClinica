@@ -9,9 +9,22 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   color: #7a7a7a;
   font-size: 13px;
+  background-color: #eee;
 }
 
 mat-sidenav-container,
 div {
   height: 100%;
+}
+
+.conteudo {
+  padding: 20px;
+}
+
+h2 {
+  color: #7f7f7f;
+}
+
+.espacamento-horizontal {
+  flex: 1 1 auto;
 }
