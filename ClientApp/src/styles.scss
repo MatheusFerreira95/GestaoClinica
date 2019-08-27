@@ -63,3 +63,25 @@ simple-snack-bar {
 .notificacao-sucesso {
   background-color: #00c853;
 }
+
+// ----------------------------------------------- MATERIAL PROGRESS SPINNER / LOADER
+.loader {
+  display: inherit;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0;
+  background-color: #ffffff87;
+  vertical-align: center;
+  z-index: 11111111111;
+}
+
+mat-spinner {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  top: 50%;
+  margin-top: -50px;
+}

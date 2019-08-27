@@ -24,15 +24,10 @@ export class LoginComponent {
   }
 
   public login(usuario) {
-    this.repository.requisicaoPost("Login", usuario).subscribe(
-      result => {
-        localStorage.setItem("token", result["token"]);
-        this.router.navigate(["/main"]);
-      },
-      error => {
-        this.notificacao.exibir(error.error, "erro");
-      }
-    );
+    this.repository.requisicaoPost("Login", usuario).then(result => {
+      localStorage.setItem("token", result["token"]);
+      this.router.navigate(["/main"]);
+    });
   }
 
   private construirItensFormulario() {
