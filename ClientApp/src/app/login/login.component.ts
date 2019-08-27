@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Validators } from "@angular/forms";
 import { RepositoryService } from "../shared/repository.service";
 import { ItensFormulario } from "../shared/formulario/formulario.component";
 
@@ -10,23 +10,47 @@ import { ItensFormulario } from "../shared/formulario/formulario.component";
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent {
-  usuario = { nome: "admin", senha: "admin" };
-  public loginForm: FormGroup;
   public itensFormulario: ItensFormulario;
 
   constructor(private router: Router, private repository: RepositoryService) {}
 
   ngOnInit() {
+    this.construirItensFormulario();
+  }
+
+  public login(usuario) {
+    this.repository.requisicaoPost("Login", usuario).subscribe(
+      result => {
+        localStorage.setItem("token", result["token"]);
+        this.router.navigate(["/main"]);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
+
+  private construirItensFormulario() {
     this.itensFormulario = {
       onSubmit: this.login,
       campos: [
         {
           id: "nome",
           type: undefined,
-          validadores: [Validators.required, Validators.maxLength(3)],
+          validadores: [Validators.required],
           placeholder: "Nome de Usuário",
           nome: "nome",
-          formControlName: "nome"
+          formControlName: "nome",
+          valorInicial: ""
+        },
+        {
+          id: "senha",
+          type: "password",
+          validadores: [Validators.required],
+          placeholder: "Senha",
+          nome: "senha",
+          formControlName: "senha",
+          valorInicial: ""
         }
       ],
       nomeBotaoSubmit: "Entrar",
@@ -41,20 +65,4 @@ export class LoginComponent {
       titulo: "Acessar"
     };
   }
-
-  public hasError = (controlName: string, errorName: string) => {
-    return this.loginForm.controls[controlName].hasError(errorName);
-  };
-
-  public login = () => {
-    this.repository.requisicaoPost("Login", this.usuario).subscribe(
-      result => {
-        localStorage.setItem("token", result["token"]);
-        this.router.navigate(["/main"]);
-      },
-      error => {
-        console.error(error);
-      }
-    );
-  };
 }

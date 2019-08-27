@@ -13,36 +13,37 @@ import {
   styleUrls: ["./formulario.component.scss"]
 })
 export class FormularioComponent {
-  public form: FormGroup;
   @Input() itensFormulario: ItensFormulario;
+  public form: FormGroup;
 
   constructor() {}
 
   ngOnInit() {
-    let formGroup = {
-      nome: new FormControl("", [Validators.required, Validators.maxLength(3)])
-    };
+    let formGroup = {};
 
     this.itensFormulario.campos.forEach(campo => {
-      formGroup[campo.id] = new FormControl("", campo.validadores);
+      formGroup[campo.id] = new FormControl(
+        campo.valorInicial,
+        campo.validadores
+      );
     });
 
     this.form = new FormGroup(formGroup);
   }
 
-  public hasError = (controlName: string, errorName: string) => {
+  public hasError(controlName: string, errorName: string) {
     return this.form.controls[controlName].hasError(errorName);
-  };
+  }
 
-  onSubmit() {
+  public onSubmit() {
     if (this.form.invalid) {
       return;
     }
 
-    this.itensFormulario.onSubmit();
+    this.itensFormulario.onSubmit(this.form.value);
   }
 
-  onCancelar() {
+  public onCancelar() {
     this.itensFormulario.onCancelar();
   }
 }
@@ -64,4 +65,5 @@ export class Campo {
   nome: String;
   placeholder: String;
   formControlName: String;
+  valorInicial: String = "";
 }
