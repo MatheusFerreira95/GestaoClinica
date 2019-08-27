@@ -1,5 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-
+// ----------------------------------------------- CUSTOMIZAÇÃO GERAL
 html,
 body {
   height: 100%;
@@ -12,18 +11,8 @@ body {
   background-color: #eee;
 }
 
-mat-sidenav-container,
 div {
   height: 100%;
-}
-
-.conteudo {
-  padding: 20px;
-}
-
-mat-card-title {
-  color: #7f7f7f;
-  text-align: center;
 }
 
 form {
@@ -31,10 +20,21 @@ form {
   flex-direction: column;
 }
 
-mat-form-field {
-  width: 100%;
+.conteudo {
+  padding: 20px;
 }
 
 .espacamento-horizontal {
   flex: 1 1 auto;
+}
+
+// ----------------------------------------------- MATERIAL CARD
+mat-card-title {
+  color: #7f7f7f;
+  text-align: center;
+}
+
+// ----------------------------------------------- MATERIAL FORM
+mat-form-field {
+  width: 100%;
 }
