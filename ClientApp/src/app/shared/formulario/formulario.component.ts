@@ -20,7 +20,6 @@ export class FormularioComponent {
   constructor(private notificacao: Notificacao) {}
 
   ngOnInit() {
-    this.notificacao.exibir("teste", "sucesso");
     let formGroup = {};
 
     this.itensFormulario.campos.forEach(campo => {
@@ -39,6 +38,10 @@ export class FormularioComponent {
 
   public onSubmit() {
     if (this.form.invalid) {
+      this.notificacao.exibir(
+        "Por favor, preencha o formulário corretamente.",
+        "erro"
+      );
       return;
     }
 
