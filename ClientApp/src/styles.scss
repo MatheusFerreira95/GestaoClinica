@@ -21,8 +21,18 @@ div {
   padding: 20px;
 }
 
-h2 {
+mat-card-title {
   color: #7f7f7f;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  width: 100%;
 }
 
 .espacamento-horizontal {

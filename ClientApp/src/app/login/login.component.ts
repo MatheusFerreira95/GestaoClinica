@@ -1,6 +1,7 @@
-import { Component, Inject } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { RepositoryService } from "../shared/repository.service";
 
 @Component({
   selector: "login",
@@ -8,17 +9,35 @@ import { Router } from "@angular/router";
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent {
-  usuario = { nome: "", senha: "" };
+  usuario = { nome: "admin", senha: "admin" };
+  public loginForm: FormGroup;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private router: Router, private repository: RepositoryService) {}
+
+  ngOnInit() {
+    this.loginForm = new FormGroup({
+      nome: new FormControl("", [Validators.required, Validators.maxLength(3)]),
+      senha: new FormControl("", [Validators.required, Validators.maxLength(3)])
+    });
+  }
+
+  public hasError = (controlName: string, errorName: string) => {
+    return this.loginForm.controls[controlName].hasError(errorName);
+  };
 
   login() {
-    this.http.post("http://localhost:5000/api/Login", this.usuario).subscribe(
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.repository.requisicaoPost("Login", this.usuario).subscribe(
       result => {
         localStorage.setItem("token", result["token"]);
         this.router.navigate(["/main"]);
       },
-      error => console.error(error)
+      error => {
+        console.error(error);
+      }
     );
   }
 }

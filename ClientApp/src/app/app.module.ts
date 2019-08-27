@@ -9,8 +9,9 @@ import { AppComponent } from "./app.component";
 import { MainComponent } from "./main/main.component";
 import { LoginComponent } from "./login/login.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ReactiveFormsModule } from "@angular/forms";
 
-import { Interceptor } from "./auth/interceptor.module";
+import { Interceptor } from "./shared/auth/interceptor.module";
 
 @NgModule({
   declarations: [AppComponent, MainComponent, LoginComponent],
@@ -20,6 +21,7 @@ import { Interceptor } from "./auth/interceptor.module";
     FormsModule,
     BrowserAnimationsModule,
     AppMaterialModule,
+    ReactiveFormsModule,
     Interceptor,
     RouterModule.forRoot([
       { path: "main", component: MainComponent },
