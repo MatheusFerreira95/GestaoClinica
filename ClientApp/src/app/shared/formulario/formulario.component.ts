@@ -40,7 +40,10 @@ export class FormularioComponent {
       return;
     }
 
-    this.itensFormulario.onSubmit(this.form.value);
+    this.itensFormulario.onSubmit(
+      this.itensFormulario.bindComponentePai,
+      this.form.value
+    );
   }
 
   public onCancelar() {
@@ -49,6 +52,7 @@ export class FormularioComponent {
 }
 
 export class ItensFormulario {
+  bindComponentePai;
   onSubmit: Function;
   onCancelar: Function;
   campos: Array<Campo> = [];

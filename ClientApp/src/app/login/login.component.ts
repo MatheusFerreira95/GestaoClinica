@@ -18,11 +18,11 @@ export class LoginComponent {
     this.construirItensFormulario();
   }
 
-  public login(usuario) {
-    this.repository.requisicaoPost("Login", usuario).subscribe(
+  public login(that, usuario) {
+    that.repository.requisicaoPost("Login", usuario).subscribe(
       result => {
         localStorage.setItem("token", result["token"]);
-        this.router.navigate(["/main"]);
+        that.router.navigate(["/main"]);
       },
       error => {
         console.error(error);
@@ -32,6 +32,7 @@ export class LoginComponent {
 
   private construirItensFormulario() {
     this.itensFormulario = {
+      bindComponentePai: this,
       onSubmit: this.login,
       campos: [
         {
