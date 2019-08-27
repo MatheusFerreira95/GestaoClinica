@@ -20,12 +20,14 @@ import { MatSliderModule } from "@angular/material/slider";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
   imports: [
     MatButtonModule,
     MatCheckboxModule,
     MatToolbarModule,
+    MatTableModule,
     MatChipsModule,
     MatOptionModule,
     MatGridListModule,
@@ -49,6 +51,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     MatButtonModule,
     MatCheckboxModule,
     MatToolbarModule,
+    MatTableModule,
     MatChipsModule,
     MatOptionModule,
     MatGridListModule,

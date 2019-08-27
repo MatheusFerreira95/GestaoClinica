@@ -1,5 +1,13 @@
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [];
 
 @Component({
   selector: "consultorios",
@@ -7,5 +15,12 @@ import { Router } from "@angular/router";
   styleUrls: ["./consultorios.component.scss"]
 })
 export class ConsultoriosComponent {
-  constructor(private router: Router) {}
+  colunas: string[] = ["col-1", "col-2", "col-3", "col-4"];
+  dados = ELEMENT_DATA;
+
+  constructor() {}
+
+  abrirCadastro() {
+    alert("cadastro");
+  }
 }

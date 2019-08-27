@@ -13,6 +13,7 @@ import { LoginComponent } from "./login/login.component";
 import { MedicosComponent } from "./medicos/medicos.component";
 import { ConsultoriosComponent } from "./consultorios/consultorios.component";
 import { HomeComponent } from "./home/home.component";
+import { CadastroConsultorio } from "./consultorios/cadastro-consultorio/cadastro-consultorio.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HomeComponent } from "./home/home.component";
     LoginComponent,
     MedicosComponent,
     ConsultoriosComponent,
-    HomeComponent
+    HomeComponent,
+    CadastroConsultorio
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
