@@ -10,9 +10,19 @@ import { Interceptor } from "./shared/auth/interceptor.module";
 import { AppComponent } from "./app.component";
 import { MainComponent } from "./main/main.component";
 import { LoginComponent } from "./login/login.component";
+import { MedicosComponent } from "./medicos/medicos.component";
+import { ConsultoriosComponent } from "./consultorios/consultorios.component";
+import { HomeComponent } from "./home/home.component";
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    MainComponent,
+    LoginComponent,
+    MedicosComponent,
+    ConsultoriosComponent,
+    HomeComponent
+  ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
     HttpClientModule,

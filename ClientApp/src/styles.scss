@@ -1,6 +1,7 @@
 // ----------------------------------------------- CUSTOMIZAÇÃO GERAL
 html,
-body {
+body,
+div {
   height: 100%;
 }
 body {
@@ -9,10 +10,6 @@ body {
   color: #7a7a7a;
   font-size: 13px;
   background-color: #eee;
-}
-
-div {
-  height: 100%;
 }
 
 form {
@@ -29,6 +26,9 @@ form {
 }
 
 // ----------------------------------------------- MATERIAL CARD
+mat-card-content {
+  color: #7a7a7a;
+}
 mat-card-title {
   color: #7f7f7f;
   text-align: center;

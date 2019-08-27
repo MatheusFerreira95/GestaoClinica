@@ -1,0 +1,30 @@
+.menu {
+  min-width: 200px;
+  height: 100%;
+  background-color: #f5f5f5;
+
+  mat-toolbar-row {
+    cursor: pointer;
+
+    > span {
+      font-size: 13px;
+    }
+  }
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-toolbar-row:hover {
+  background-color: #ddd;
+}
+
+.logo {
+  border-bottom: #ddd 1px solid;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  background-color: #fff;
+  width: 100%;
+  text-align: center;
+}
