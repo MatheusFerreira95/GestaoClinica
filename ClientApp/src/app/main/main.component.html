@@ -5,19 +5,30 @@
         <img src="../../assets/logo.png" width="150px" />
       </div>
 
-      <mat-toolbar-row>
+      <mat-toolbar-row
+        (click)="setConteudoSelecionado(sidenav, 'home')"
+        [ngClass]="{ 'item-menu-ativo': conteudoSelecionado === 'home' }"
+      >
         <span>Início</span>
         <span class="espacamento-horizontal"></span>
         <mat-icon class="icone">home</mat-icon>
       </mat-toolbar-row>
 
-      <mat-toolbar-row>
+      <mat-toolbar-row
+        (click)="setConteudoSelecionado(sidenav, 'medicos')"
+        [ngClass]="{ 'item-menu-ativo': conteudoSelecionado === 'medicos' }"
+      >
         <span>Médicos</span>
         <span class="espacamento-horizontal"></span>
         <mat-icon class="icone">assignment_ind</mat-icon>
       </mat-toolbar-row>
 
-      <mat-toolbar-row>
+      <mat-toolbar-row
+        [ngClass]="{
+          'item-menu-ativo': conteudoSelecionado === 'consultorios'
+        }"
+        (click)="setConteudoSelecionado(sidenav, 'consultorios')"
+      >
         <span>Consultórios</span>
         <span class="espacamento-horizontal"></span>
         <mat-icon class="icone">business</mat-icon>
@@ -37,8 +48,8 @@
   </mat-toolbar>
 
   <div class="conteudo">
-    <home></home>
-    <consultorios></consultorios>
-    <medicos></medicos>
+    <home *ngIf="conteudoSelecionado === 'home'"></home>
+    <consultorios *ngIf="conteudoSelecionado === 'consultorios'"></consultorios>
+    <medicos *ngIf="conteudoSelecionado === 'medicos'"></medicos>
   </div>
 </mat-sidenav-container>

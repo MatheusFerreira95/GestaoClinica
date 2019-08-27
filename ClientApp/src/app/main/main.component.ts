@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-main",
@@ -19,6 +18,11 @@ export class MainComponent {
     ) {
       this.router.navigate(["/login"]);
     }
+  }
+
+  setConteudoSelecionado(sidenav, conteudo) {
+    sidenav.toggle();
+    this.conteudoSelecionado = conteudo;
   }
 
   sair() {
