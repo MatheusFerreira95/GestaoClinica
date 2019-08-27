@@ -1,53 +1,5 @@
-<mat-card class="card-login">
-  <mat-card-title>Acessar</mat-card-title>
-
-  <form
-    [formGroup]="loginForm"
-    autocomplete="off"
-    novalidate
-    (ngSubmit)="login(loginForm.value)"
-  >
-    <mat-card-content>
-      <mat-form-field>
-        <input
-          matInput
-          type="text"
-          placeholder="Nome de usuário"
-          formControlName="nome"
-          id="nome"
-        />
-        <mat-error *ngIf="hasError('nome', 'required')"
-          >Campo obrigatório.</mat-error
-        >
-        <mat-error *ngIf="hasError('nome', 'maxlength')"
-          >Campo excede o número de caracteres permitidos.</mat-error
-        >
-      </mat-form-field>
-
-      <mat-form-field>
-        <input
-          matInput
-          type="password"
-          placeholder="Senha"
-          formControlName="senha"
-          id="senha"
-        />
-        <mat-error *ngIf="hasError('senha', 'required')"
-          >Campo obrigatório.</mat-error
-        >
-        <mat-error *ngIf="hasError('nome', 'maxlength')"
-          >Campo excede o número de caracteres permitidos.</mat-error
-        >
-      </mat-form-field>
-    </mat-card-content>
-
-    <mat-card-actions align="center">
-      <button mat-raised-button color="primary">
-        Entrar
-      </button>
-      <button type="button" mat-raised-button (click)="onCancelar()">
-        Cancelar
-      </button>
-    </mat-card-actions>
-  </form>
+<mat-card>
+  <mat-card-title>Sistema de Gestão de Consultório Médico</mat-card-title>
 </mat-card>
+
+<formulario [itensFormulario]="itensFormulario"></formulario>

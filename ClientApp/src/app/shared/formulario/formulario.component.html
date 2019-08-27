@@ -1,0 +1,42 @@
+<mat-card class="card-formulario" [ngStyle]="itensFormulario.style">
+  <mat-card-title>{{ itensFormulario.titulo }}</mat-card-title>
+
+  <form
+    [formGroup]="form"
+    autocomplete="off"
+    novalidate
+    (ngSubmit)="onSubmit(form.value)"
+  >
+    <mat-card-content>
+      <mat-form-field *ngFor="let campo of itensFormulario.campos">
+        <input
+          matInput
+          [type]="campo.type"
+          [placeholder]="campo.placeholder"
+          [formControlName]="campo.formControlName"
+          [id]="campo.id"
+        />
+        <mat-error *ngIf="hasError(campo.id, 'required')"
+          >Campo obrigatório.</mat-error
+        >
+        <mat-error *ngIf="hasError(campo.id, 'maxlength')"
+          >Campo excede o número de caracteres permitidos.</mat-error
+        >
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions align="center">
+      <button mat-raised-button color="primary">
+        {{ itensFormulario.nomeBotaoSubmit }}
+      </button>
+      <button
+        *ngIf="itensFormulario.nomeBotaoCancelar"
+        type="button"
+        mat-raised-button
+        (click)="onCancelar()"
+      >
+        {{ itensFormulario.nomeBotaoCancelar }}
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

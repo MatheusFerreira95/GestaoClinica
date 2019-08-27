@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { RepositoryService } from "../shared/repository.service";
+import { ItensFormulario } from "../shared/formulario/formulario.component";
 
 @Component({
   selector: "login",
@@ -11,25 +12,41 @@ import { RepositoryService } from "../shared/repository.service";
 export class LoginComponent {
   usuario = { nome: "admin", senha: "admin" };
   public loginForm: FormGroup;
+  public itensFormulario: ItensFormulario;
 
   constructor(private router: Router, private repository: RepositoryService) {}
 
   ngOnInit() {
-    this.loginForm = new FormGroup({
-      nome: new FormControl("", [Validators.required, Validators.maxLength(3)]),
-      senha: new FormControl("", [Validators.required, Validators.maxLength(3)])
-    });
+    this.itensFormulario = {
+      onSubmit: this.login,
+      campos: [
+        {
+          id: "nome",
+          type: undefined,
+          validadores: [Validators.required, Validators.maxLength(3)],
+          placeholder: "Nome de Usuário",
+          nome: "nome",
+          formControlName: "nome"
+        }
+      ],
+      nomeBotaoSubmit: "Entrar",
+      onCancelar: undefined,
+      nomeBotaoCancelar: undefined,
+      style: {
+        width: "40%",
+        "margin-top": "20vh",
+        "margin-left": "30%",
+        "text-align": "center"
+      },
+      titulo: "Acessar"
+    };
   }
 
   public hasError = (controlName: string, errorName: string) => {
     return this.loginForm.controls[controlName].hasError(errorName);
   };
 
-  login() {
-    if (this.loginForm.invalid) {
-      return;
-    }
-
+  public login = () => {
     this.repository.requisicaoPost("Login", this.usuario).subscribe(
       result => {
         localStorage.setItem("token", result["token"]);
@@ -39,5 +56,5 @@ export class LoginComponent {
         console.error(error);
       }
     );
-  }
+  };
 }

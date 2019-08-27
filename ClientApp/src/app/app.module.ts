@@ -1,15 +1,13 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
-import { AppMaterialModule } from "./app.material.module";
 
 import { AppComponent } from "./app.component";
 import { MainComponent } from "./main/main.component";
 import { LoginComponent } from "./login/login.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ReactiveFormsModule } from "@angular/forms";
+import { SharedModule } from "./shared/shared.module";
 
 import { Interceptor } from "./shared/auth/interceptor.module";
 
@@ -18,10 +16,8 @@ import { Interceptor } from "./shared/auth/interceptor.module";
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
     HttpClientModule,
-    FormsModule,
     BrowserAnimationsModule,
-    AppMaterialModule,
-    ReactiveFormsModule,
+    SharedModule,
     Interceptor,
     RouterModule.forRoot([
       { path: "main", component: MainComponent },
