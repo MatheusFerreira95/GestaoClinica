@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { Validators } from "@angular/forms";
-import { RepositoryService } from "../shared/repository.service";
+import { RepositoryService } from "../shared/services/repository.service";
 import { ItensFormulario } from "../shared/formulario/formulario.component";
 
 @Component({

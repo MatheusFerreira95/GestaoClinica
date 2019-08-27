@@ -38,3 +38,28 @@ mat-card-title {
 mat-form-field {
   width: 100%;
 }
+
+// ----------------------------------------------- MATERIAL SNACK-BAR / NOTIFICACAO
+.cdk-overlay-container {
+  height: 30px;
+}
+
+snack-bar-container {
+  font-size: 13px;
+  width: 50vh;
+  background-color: #7f7f7f;
+}
+
+simple-snack-bar {
+  color: white;
+  text-align: center;
+  > span {
+    width: 100%;
+  }
+}
+.notificacao-erro {
+  background-color: #f44336;
+}
+.notificacao-sucesso {
+  background-color: #00c853;
+}

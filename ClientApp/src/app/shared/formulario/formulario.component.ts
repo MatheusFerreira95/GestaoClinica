@@ -6,6 +6,7 @@ import {
   AbstractControlOptions,
   ValidatorFn
 } from "@angular/forms";
+import { Notificacao } from "../notificacao/notificacao";
 
 @Component({
   selector: "formulario",
@@ -16,9 +17,10 @@ export class FormularioComponent {
   @Input() itensFormulario: ItensFormulario;
   public form: FormGroup;
 
-  constructor() {}
+  constructor(private notificacao: Notificacao) {}
 
   ngOnInit() {
+    this.notificacao.exibir("teste", "sucesso");
     let formGroup = {};
 
     this.itensFormulario.campos.forEach(campo => {
