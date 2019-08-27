@@ -40,21 +40,20 @@ export class FormularioComponent {
       return;
     }
 
-    this.itensFormulario.onSubmit(
-      this.itensFormulario.bindComponentePai,
+    this.itensFormulario.componentePrincipal[this.itensFormulario.nomeOnSubmit](
       this.form.value
     );
   }
 
   public onCancelar() {
-    this.itensFormulario.onCancelar();
+    this.itensFormulario.nomeOnCancelar();
   }
 }
 
 export class ItensFormulario {
-  bindComponentePai;
-  onSubmit: Function;
-  onCancelar: Function;
+  componentePrincipal; // componente (ou tela) que utiliza o formulario.component
+  nomeOnSubmit;
+  nomeOnCancelar;
   campos: Array<Campo> = [];
   nomeBotaoCancelar: String;
   nomeBotaoSubmit: String = "Salvar";
