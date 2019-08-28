@@ -13,7 +13,7 @@ import { LoginComponent } from "./login/login.component";
 import { MedicosComponent } from "./medicos/medicos.component";
 import { ConsultoriosComponent } from "./consultorios/consultorios.component";
 import { HomeComponent } from "./home/home.component";
-import { CadastroConsultorio } from "./consultorios/cadastro-consultorio/cadastro-consultorio.component";
+import { GestaoEntidadesComponent } from "./shared/gestao-entidades/gestao-entidades.component";
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { CadastroConsultorio } from "./consultorios/cadastro-consultorio/cadastr
     MedicosComponent,
     ConsultoriosComponent,
     HomeComponent,
-    CadastroConsultorio
+    GestaoEntidadesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

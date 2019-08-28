@@ -9,8 +9,8 @@ import { ItensFormulario } from "../shared/formulario/formulario.component";
   styleUrls: ["./consultorios.component.scss"]
 })
 export class ConsultoriosComponent {
-  colunas: string[] = ["col-1", "col-2", "col-3", "col-4"];
-  dados = [];
+  colunas: string[] = ["col-1", "col-2", "col-3", "col-4", "acoes"];
+  dados = [{ "col-1": "oi", "col-2": "oi", "col-3": "oi", "col-4": "oi" }];
   public itensFormulario: ItensFormulario;
 
   constructor(private modalService: ModalService) {}
@@ -54,7 +54,9 @@ export class ConsultoriosComponent {
       nomeBotaoSubmit: "Salvar",
       nomeOnCancelar: "cancelar",
       nomeBotaoCancelar: "Cancelar",
-      style: {},
+      style: {
+        "box-shadow": "none"
+      },
       titulo: "Novo Consultório"
     };
   }

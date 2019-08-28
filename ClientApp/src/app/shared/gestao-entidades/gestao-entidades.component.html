@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-card-title>{{ titulo }}</mat-card-title>
+  <mat-card-content>
+    <div align="right">
+      <button mat-raised-button color="primary" (click)="exibirModal()">
+        Cadastrar
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <table mat-table [dataSource]="dados">
+      <ng-container *ngFor="let coluna of colunas" [matColumnDef]="coluna">
+        <ng-container *ngIf="coluna !== 'acoes'">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ coluna | uppercase }}
+          </th>
+          <td mat-cell *matCellDef="let item">
+            {{ item[coluna] }}
+          </td>
+        </ng-container>
+        <ng-container *ngIf="coluna === 'acoes'" matColumnDef="Ações">
+          <th mat-header-cell *matHeaderCellDef>
+            Ações
+          </th>
+          <td mat-cell *matCellDef="let item">
+            <button mat-icon-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+    </table>
+
+    <p align="center" *ngIf="!dados || dados.length === 0">
+      Nenhum dado encontrado.
+    </p>
+  </mat-card-content>
+</mat-card>
+
+<modal titulo="Cadastro">
+  <formulario [itensFormulario]="itensFormulario"></formulario>
+</modal>
