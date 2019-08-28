@@ -43,22 +43,32 @@ export class ConsultoriosComponent {
         {
           id: "nome",
           type: "text",
-          validadores: [Validators.required],
+          mask: "",
+          validadores: [Validators.maxLength(100)],
           placeholder: "Nome",
           nome: "nome",
           formControlName: "nome",
-          valorInicial: "",
-          mask: ""
+          valorInicial: ""
         },
         {
           id: "endereco",
           type: "text",
-          validadores: [Validators.required],
+          validadores: [Validators.required, Validators.maxLength(200)],
           placeholder: "Endereço",
           nome: "endereco",
           formControlName: "endereco",
           valorInicial: "",
           mask: ""
+        },
+        {
+          id: "telefone",
+          type: "text",
+          mask: "(00) 0000-0000",
+          validadores: [Validators.required, Validators.maxLength(20)],
+          placeholder: "Telefone",
+          nome: "telefone",
+          formControlName: "telefone",
+          valorInicial: ""
         }
       ],
       nomeBotaoSubmit: "Salvar",

@@ -60,7 +60,7 @@ export class MedicosComponent {
           id: "crm",
           type: "text",
           mask: "",
-          validadores: [Validators.maxLength(10)],
+          validadores: [Validators.required, Validators.maxLength(10)],
           placeholder: "CRM",
           nome: "crm",
           formControlName: "crm",
