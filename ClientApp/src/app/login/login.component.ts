@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { Validators } from "@angular/forms";
 import { RepositoryService } from "../shared/services/repository.service";
 import { ItensFormulario } from "../shared/formulario/formulario.component";
-import { Notificacao } from "../shared/notificacao/notificacao";
 
 @Component({
   selector: "login",
@@ -13,11 +12,7 @@ import { Notificacao } from "../shared/notificacao/notificacao";
 export class LoginComponent {
   public itensFormulario: ItensFormulario;
 
-  constructor(
-    private router: Router,
-    private repository: RepositoryService,
-    private notificacao: Notificacao
-  ) {}
+  constructor(private router: Router, private repository: RepositoryService) {}
 
   ngOnInit() {
     this.construirItensFormulario();

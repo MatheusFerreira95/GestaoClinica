@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { ModalService } from "../shared/services/modal.service";
+import { Validators } from "@angular/forms";
+import { ItensFormulario } from "../shared/formulario/formulario.component";
 
 @Component({
   selector: "consultorios",
@@ -9,8 +11,13 @@ import { ModalService } from "../shared/services/modal.service";
 export class ConsultoriosComponent {
   colunas: string[] = ["col-1", "col-2", "col-3", "col-4"];
   dados = [];
+  public itensFormulario: ItensFormulario;
 
   constructor(private modalService: ModalService) {}
+
+  ngOnInit() {
+    this.construirItensFormulario();
+  }
 
   abrirCadastro() {
     this.modalService.exibir(this, "retornoModal");
@@ -18,5 +25,37 @@ export class ConsultoriosComponent {
 
   retornoModal() {
     alert("retornoModal recebido");
+  }
+
+  private construirItensFormulario() {
+    this.itensFormulario = {
+      componentePrincipal: this,
+      nomeOnSubmit: "salvar",
+      campos: [
+        {
+          id: "nome",
+          type: "text",
+          validadores: [Validators.required],
+          placeholder: "Nome",
+          nome: "nome",
+          formControlName: "nome",
+          valorInicial: ""
+        },
+        {
+          id: "endereco",
+          type: "text",
+          validadores: [Validators.required],
+          placeholder: "Endereço",
+          nome: "endereco",
+          formControlName: "endereco",
+          valorInicial: ""
+        }
+      ],
+      nomeBotaoSubmit: "Salvar",
+      nomeOnCancelar: "cancelar",
+      nomeBotaoCancelar: "Cancelar",
+      style: {},
+      titulo: "Novo Consultório"
+    };
   }
 }
