@@ -9,8 +9,14 @@ import { ItensFormulario } from "../shared/formulario/formulario.component";
   styleUrls: ["./consultorios.component.scss"]
 })
 export class ConsultoriosComponent {
-  colunas: string[] = ["col-1", "col-2", "col-3", "col-4", "acoes"];
-  dados = [{ "col-1": "oi", "col-2": "oi", "col-3": "oi", "col-4": "oi" }];
+  colunas: string[] = ["nome", "endereco", "telefone", "acoes"];
+  dados = [
+    {
+      nome: "Consultóri oX",
+      endereco: "Rua Professor X, numero 123, bairro Zona Sul. Lavras/MG",
+      telefone: "(37) 9 1234-1234"
+    }
+  ];
   public itensFormulario: ItensFormulario;
 
   constructor(private modalService: ModalService) {}
