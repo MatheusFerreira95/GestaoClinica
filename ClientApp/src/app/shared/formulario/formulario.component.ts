@@ -74,4 +74,5 @@ export class Campo {
   placeholder: String;
   formControlName: String;
   valorInicial: String = "";
+  mask: String = "";
 }

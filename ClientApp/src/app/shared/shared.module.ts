@@ -5,9 +5,16 @@ import { ModalComponent } from "./modal/modal.component";
 import { AppMaterialModule } from "./material-components/app.material.module";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
+import { NgxMaskModule } from "ngx-mask";
 
 @NgModule({
-  imports: [CommonModule, AppMaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AppMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
+  ],
   exports: [
     FormularioComponent,
     ModalComponent,

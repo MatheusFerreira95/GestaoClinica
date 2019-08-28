@@ -15,6 +15,7 @@
           [placeholder]="campo.placeholder"
           [formControlName]="campo.formControlName"
           [id]="campo.id"
+          [mask]="campo.mask"
         />
         <mat-error *ngIf="hasError(campo.id, 'required')"
           >Campo obrigatório.</mat-error

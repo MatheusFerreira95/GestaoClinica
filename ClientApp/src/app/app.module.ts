@@ -5,6 +5,7 @@ import { RouterModule } from "@angular/router";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SharedModule } from "./shared/shared.module";
+
 import { Interceptor } from "./shared/auth/interceptor.module";
 
 import { AppComponent } from "./app.component";

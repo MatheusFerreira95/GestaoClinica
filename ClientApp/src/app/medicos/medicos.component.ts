@@ -59,6 +59,7 @@ export class MedicosComponent {
         {
           id: "crm",
           type: "text",
+          mask: "",
           validadores: [Validators.maxLength(10)],
           placeholder: "CRM",
           nome: "crm",
@@ -68,6 +69,7 @@ export class MedicosComponent {
         {
           id: "nome",
           type: "text",
+          mask: "",
           validadores: [Validators.maxLength(100)],
           placeholder: "Nome",
           nome: "nome",
@@ -76,7 +78,8 @@ export class MedicosComponent {
         },
         {
           id: "telefone",
-          type: "phone",
+          type: "text",
+          mask: "(00) 0000-0000",
           validadores: [Validators.maxLength(20)],
           placeholder: "Telefone",
           nome: "telefone",
@@ -85,9 +88,10 @@ export class MedicosComponent {
         },
         {
           id: "valorConsulta",
-          type: "decimal",
+          type: "text",
+          mask: "0*,00",
           validadores: [],
-          placeholder: "Valor da Consulta",
+          placeholder: "Valor da Consulta (R$)",
           nome: "valorConsulta",
           formControlName: "valorConsulta",
           valorInicial: ""
