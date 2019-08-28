@@ -57,21 +57,39 @@ export class MedicosComponent {
       nomeOnSubmit: "salvar",
       campos: [
         {
+          id: "crm",
+          type: "text",
+          validadores: [Validators.maxLength(10)],
+          placeholder: "CRM",
+          nome: "crm",
+          formControlName: "crm",
+          valorInicial: ""
+        },
+        {
           id: "nome",
           type: "text",
-          validadores: [Validators.required],
+          validadores: [Validators.maxLength(100)],
           placeholder: "Nome",
           nome: "nome",
           formControlName: "nome",
           valorInicial: ""
         },
         {
-          id: "endereco",
-          type: "text",
-          validadores: [Validators.required],
-          placeholder: "Endereço",
-          nome: "endereco",
-          formControlName: "endereco",
+          id: "telefone",
+          type: "phone",
+          validadores: [Validators.maxLength(20)],
+          placeholder: "Telefone",
+          nome: "telefone",
+          formControlName: "telefone",
+          valorInicial: ""
+        },
+        {
+          id: "valorConsulta",
+          type: "decimal",
+          validadores: [],
+          placeholder: "Valor da Consulta",
+          nome: "valorConsulta",
+          formControlName: "valorConsulta",
           valorInicial: ""
         }
       ],
