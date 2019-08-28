@@ -37,7 +37,8 @@ export class LoginComponent {
           placeholder: "Nome de Usuário",
           nome: "nome",
           formControlName: "nome",
-          valorInicial: ""
+          valorInicial: "",
+          mask: ""
         },
         {
           id: "senha",
@@ -46,7 +47,8 @@ export class LoginComponent {
           placeholder: "Senha",
           nome: "senha",
           formControlName: "senha",
-          valorInicial: ""
+          valorInicial: "",
+          mask: ""
         }
       ],
       nomeBotaoSubmit: "Entrar",

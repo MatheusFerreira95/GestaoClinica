@@ -47,7 +47,8 @@ export class ConsultoriosComponent {
           placeholder: "Nome",
           nome: "nome",
           formControlName: "nome",
-          valorInicial: ""
+          valorInicial: "",
+          mask: ""
         },
         {
           id: "endereco",
@@ -56,7 +57,8 @@ export class ConsultoriosComponent {
           placeholder: "Endereço",
           nome: "endereco",
           formControlName: "endereco",
-          valorInicial: ""
+          valorInicial: "",
+          mask: ""
         }
       ],
       nomeBotaoSubmit: "Salvar",
