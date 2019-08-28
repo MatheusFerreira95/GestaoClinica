@@ -48,10 +48,12 @@ export class FormularioComponent {
     this.itensFormulario.componentePrincipal[this.itensFormulario.nomeOnSubmit](
       this.form.value
     );
+    this.form.reset();
   }
 
   public onCancelar() {
-    this.itensFormulario.nomeOnCancelar();
+    this.itensFormulario[this.itensFormulario.nomeOnCancelar]();
+    this.form.reset();
   }
 }
 
