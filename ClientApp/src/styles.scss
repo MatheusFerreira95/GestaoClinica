@@ -1,7 +1,6 @@
 // ----------------------------------------------- CUSTOMIZAÇÃO GERAL
 html,
-body,
-div {
+body {
   height: 100%;
 }
 body {
@@ -19,6 +18,12 @@ form {
 
 .conteudo {
   padding: 20px;
+}
+
+.pagina,
+.pagina .row,
+.pagina .row > div {
+  height: 100%;
 }
 
 .espacamento-horizontal {

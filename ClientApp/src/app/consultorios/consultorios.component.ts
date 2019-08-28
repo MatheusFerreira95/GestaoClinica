@@ -15,7 +15,8 @@ export class ConsultoriosComponent {
     {
       nome: "Consultóri oX",
       endereco: "Rua Professor X, numero 123, bairro Zona Sul. Lavras/MG",
-      telefone: "(37) 9 1234-1234"
+      telefone: "(37) 9 1234-1234",
+      acoes: ["editar", "remover", "vincular", "verVinculos"]
     }
   ];
   public itensFormulario: ItensFormulario;

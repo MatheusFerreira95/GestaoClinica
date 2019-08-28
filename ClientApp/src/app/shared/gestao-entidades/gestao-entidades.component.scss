@@ -1,3 +1,27 @@
 table {
   margin-top: 20px;
 }
+.tabela {
+  overflow: auto;
+  width: 100%;
+}
+
+div.mat-menu-content {
+  height: auto;
+}
+
+mat-menu {
+  height: auto !important;
+}
+div.mat-menu-panel {
+  height: fit-content !important;
+}
+
+div {
+  height: auto;
+}
+
+.coluna-acoes {
+  text-align: center;
+  border-left: 1px solid #ddd;
+}

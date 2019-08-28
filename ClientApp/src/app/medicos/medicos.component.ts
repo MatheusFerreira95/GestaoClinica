@@ -9,14 +9,30 @@ import { ItensFormulario } from "../shared/formulario/formulario.component";
   styleUrls: ["./medicos.component.scss"]
 })
 export class MedicosComponent {
-  labelColunas = ["crm", "nome", "telefone", "Valor da Consulta", "Ações"];
-  valorColunas = ["crm", "nome", "telefone", "valorConsulta", "acoes"];
+  labelColunas = [
+    "crm",
+    "nome",
+    "telefone",
+    "Valor da Consulta",
+    "Consultórios",
+    "Ações"
+  ];
+  valorColunas = [
+    "crm",
+    "nome",
+    "telefone",
+    "valorConsulta",
+    "consultorios",
+    "acoes"
+  ];
   dados = [
     {
       crm: "1234567890",
       nome: "Consultóri oX",
       valorConsulta: "R$ 300,00",
-      telefone: "(37) 9 1234-1234"
+      telefone: "(37) 9 1234-1234",
+      consultorios: "Consultorio x",
+      acoes: ["editar", "remover"]
     }
   ];
   public itensFormulario: ItensFormulario;
