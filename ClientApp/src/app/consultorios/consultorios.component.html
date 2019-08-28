@@ -2,7 +2,11 @@
   <mat-card-title>Consultórios</mat-card-title>
   <mat-card-content>
     <div align="right">
-      <button mat-raised-button color="primary" (click)="abrirCadastro()">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="abrirCadastro('modal-cadastro')"
+      >
         Cadastrar
         <mat-icon>add</mat-icon>
       </button>
@@ -29,3 +33,7 @@
     </table>
   </mat-card-content>
 </mat-card>
+
+<modal>
+  <p>testando</p>
+</modal>

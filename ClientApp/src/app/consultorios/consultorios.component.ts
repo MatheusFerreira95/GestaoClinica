@@ -1,13 +1,5 @@
 import { Component } from "@angular/core";
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [];
+import { ModalService } from "../shared/services/modal.service";
 
 @Component({
   selector: "consultorios",
@@ -16,11 +8,15 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 })
 export class ConsultoriosComponent {
   colunas: string[] = ["col-1", "col-2", "col-3", "col-4"];
-  dados = ELEMENT_DATA;
+  dados = [];
 
-  constructor() {}
+  constructor(private modalService: ModalService) {}
 
   abrirCadastro() {
-    alert("cadastro");
+    this.modalService.exibir(this, "retornoModal");
+  }
+
+  retornoModal() {
+    alert("retornoModal recebido");
   }
 }

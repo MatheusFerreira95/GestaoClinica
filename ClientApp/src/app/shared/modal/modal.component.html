@@ -1,0 +1,14 @@
+<div class="modal">
+  <mat-card class="cabecalho">
+    <mat-card-title>
+      <span>Cadastro</span>
+      <mat-icon (click)="fechar()">
+        close
+      </mat-icon>
+    </mat-card-title>
+  </mat-card>
+  <div class="modal-body">
+    <ng-content></ng-content>
+  </div>
+</div>
+<div class="modal-background"></div>

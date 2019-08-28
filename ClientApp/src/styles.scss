@@ -90,3 +90,13 @@ mat-spinner {
   top: 50%;
   margin-top: -50px;
 }
+
+// ----------------------------------------------- MODAL
+
+modal {
+  display: none;
+
+  > mat-card {
+    border: 0;
+  }
+}
