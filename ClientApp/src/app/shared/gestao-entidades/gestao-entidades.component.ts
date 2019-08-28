@@ -8,7 +8,8 @@ import { ItensFormulario } from "../formulario/formulario.component";
   styleUrls: ["./gestao-entidades.component.scss"]
 })
 export class GestaoEntidadesComponent {
-  @Input() colunas: string[];
+  @Input() labelColunas;
+  @Input() valorColunas;
   @Input() dados;
   @Input() titulo: String;
   @Input() itensFormulario: ItensFormulario;

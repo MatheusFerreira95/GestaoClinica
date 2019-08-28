@@ -9,7 +9,8 @@ import { ItensFormulario } from "../shared/formulario/formulario.component";
   styleUrls: ["./consultorios.component.scss"]
 })
 export class ConsultoriosComponent {
-  colunas: string[] = ["nome", "endereco", "telefone", "acoes"];
+  valorColunas = ["nome", "endereco", "telefone", "acoes"];
+  labelColunas = ["nome", "endereço", "telefone", "ações"];
   dados = [
     {
       nome: "Consultóri oX",
