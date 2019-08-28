@@ -7,15 +7,28 @@ import {
 import { environment } from "../../../environments/environment";
 import { LoaderService } from "./loader.service";
 import { Notificacao } from "../notificacao/notificacao";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
 })
 export class RepositoryService {
-  constructor(private http: HttpClient, private notificacao: Notificacao) {}
+  constructor(
+    private http: HttpClient,
+    private notificacao: Notificacao,
+    private router: Router
+  ) {}
 
   public requisicaoGet(rota: string) {
-    return this.http.get(this.getRotaCompleta(rota, environment.urlAddress));
+    return new Promise<any>((resolve, reject) => {
+      LoaderService.Loader.ativado = true;
+      return this.http
+        .get(this.getRotaCompleta(rota, environment.urlAddress))
+        .subscribe(
+          this.respostaRequisicaoSucesso(resolve),
+          this.respostaRequisicaoErro(reject)
+        );
+    });
   }
 
   public requisicaoPost(rota: string, body) {
@@ -60,11 +73,18 @@ export class RepositoryService {
     return (error: HttpErrorResponse) => {
       LoaderService.Loader.ativado = false;
 
+      if (error.status === 401) {
+        this.notificacao.exibir("Usuário não autenticado.", "erro");
+        this.router.navigate(["/login"]);
+        reject(error);
+      }
+
       let mensagem =
-        error.error.constructor.name === "String"
+        error.error && error.error.constructor.name === "String"
           ? error.error
           : "Erro na requisição.";
       this.notificacao.exibir(mensagem, "erro");
+
       reject(error);
     };
   }

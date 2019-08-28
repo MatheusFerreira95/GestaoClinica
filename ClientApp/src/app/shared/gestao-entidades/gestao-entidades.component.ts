@@ -13,16 +13,14 @@ export class GestaoEntidadesComponent {
   @Input() dados;
   @Input() titulo: String;
   @Input() itensFormulario: ItensFormulario;
+  @Input() retornoModal: String;
+  @Input() contexto;
   //@Input() rota: String;
   //@Input() metodo: String;
 
   constructor(private modalService: ModalService) {}
 
   exibirModal() {
-    this.modalService.exibir(this, "retornoModal");
-  }
-
-  retornoModal() {
-    alert("retornoModal recebido");
+    this.modalService.exibir(this.contexto, this.retornoModal);
   }
 }

@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { ModalService } from "../shared/services/modal.service";
 import { Validators } from "@angular/forms";
 import { ItensFormulario } from "../shared/formulario/formulario.component";
+import { RepositoryService } from "../shared/services/repository.service";
 
 @Component({
   selector: "medicos",
@@ -25,30 +26,29 @@ export class MedicosComponent {
     "consultorios",
     "acoes"
   ];
-  dados = [
-    {
-      crm: "1234567890",
-      nome: "Consultóri oX",
-      valorConsulta: "R$ 300,00",
-      telefone: "(37) 9 1234-1234",
-      consultorios: "Consultorio x",
-      acoes: ["editar", "remover"]
-    }
-  ];
+  medicos = [];
   public itensFormulario: ItensFormulario;
 
-  constructor(private modalService: ModalService) {}
+  constructor(
+    private modalService: ModalService,
+    private repository: RepositoryService
+  ) {}
 
   ngOnInit() {
     this.construirItensFormulario();
   }
 
-  abrirCadastro() {
-    this.modalService.exibir(this, "retornoModal");
+  ngAfterViewInit() {
+    // Por incrível que pareça o blog do Angular recomenda o uso de timeout: https://blog.angular-university.io/angular-debugging/
+    setTimeout(() => {
+      this.listarMedicos();
+    });
   }
 
-  retornoModal() {
-    alert("retornoModal recebido");
+  listarMedicos() {
+    this.repository.requisicaoGet("Medicos/Listar").then(result => {
+      this.medicos = result;
+    });
   }
 
   private construirItensFormulario() {
