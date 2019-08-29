@@ -52,7 +52,6 @@ namespace GestaoConsultorioMedico.Controllers
 
             if (ModelState.IsValid)
             {
-                //falta adicionar verificação para que a lista de vinculos não seja alterada ao efetuar esta ação
                 _contextoBD.Consultorio.Update(consultorio);
                 _contextoBD.SaveChanges();
             }
