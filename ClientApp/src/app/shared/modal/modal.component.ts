@@ -1,4 +1,12 @@
-import { Component, ElementRef, Input, OnInit, OnDestroy } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  OnDestroy,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import { ModalService } from "../services/modal.service";
 
 @Component({
@@ -9,6 +17,8 @@ import { ModalService } from "../services/modal.service";
 export class ModalComponent implements OnInit, OnDestroy {
   private elementoHTML: any;
   @Input() titulo: String;
+  @Output() modalSubmitFormulario = new EventEmitter();
+  @Output() modalFechar = new EventEmitter();
 
   constructor(private modalService: ModalService, private el: ElementRef) {
     this.elementoHTML = el.nativeElement;

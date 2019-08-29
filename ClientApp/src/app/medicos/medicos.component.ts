@@ -30,8 +30,8 @@ export class MedicosComponent {
   public itensFormulario: ItensFormulario;
 
   constructor(
-    private modalService: ModalService,
-    private repository: RepositoryService
+    private repository: RepositoryService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit() {
@@ -49,6 +49,30 @@ export class MedicosComponent {
     this.repository.requisicaoGet("Medicos/Listar").then(result => {
       this.medicos = result;
     });
+  }
+
+  onRetornoModal(opcao, objeto) {
+    switch (opcao) {
+      case "cadastrar":
+        this.cadastrarMedico(objeto);
+        break;
+      case "editar":
+        //this.editarMedico();
+        break;
+      default:
+        break;
+    }
+  }
+
+  cadastrarMedico(medico) {
+    this.repository.requisicaoPost("Medicos/Cadastrar", medico).then(result => {
+      alert(result);
+      this.listarMedicos();
+    });
+  }
+
+  onAbrirCadastro() {
+    this.modalService.exibir(this, this.onRetornoModal);
   }
 
   private construirItensFormulario() {

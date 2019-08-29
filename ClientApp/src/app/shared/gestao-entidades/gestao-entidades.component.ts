@@ -1,5 +1,4 @@
-import { Component, Input } from "@angular/core";
-import { ModalService } from "../services/modal.service";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { ItensFormulario } from "../formulario/formulario.component";
 
 @Component({
@@ -13,14 +12,10 @@ export class GestaoEntidadesComponent {
   @Input() dados;
   @Input() titulo: String;
   @Input() itensFormulario: ItensFormulario;
-  @Input() retornoModal: String;
-  @Input() contexto;
-  //@Input() rota: String;
-  //@Input() metodo: String;
+  @Output() abrirCadastro = new EventEmitter();
 
-  constructor(private modalService: ModalService) {}
-
-  exibirModal() {
-    this.modalService.exibir(this.contexto, this.retornoModal);
+  constructor() {}
+  onAbrirCadastro() {
+    this.abrirCadastro.emit();
   }
 }
