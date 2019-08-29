@@ -20,59 +20,52 @@ namespace GestaoConsultorioMedico.Controllers
             _contextoBD = contextoBD;
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         [Authorize("Bearer")]
         public Object Cadastrar([FromBody]Consultorio consultorio)
         {
 
-            if (consultorio == null || consultorio.Id != null)
+            if (consultorio == null)
             {
                 return enviarBadRequest();
             }
 
-            return new
+            if (ModelState.IsValid)
             {
-                nome = "Cadastrar c"
-            };
+                //falta adicionar verificações na modelagem de consultório para evitar que médicos com nomes iguais sejam cadastrados.
+                _contextoBD.Consultorio.Add(consultorio);
+                _contextoBD.SaveChanges();
+            }
+
+            return enviarSuccess();
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         [Authorize("Bearer")]
         public Object editar([FromBody]Consultorio consultorio)
         {
 
-            if (consultorio == null || consultorio.Id == null)
+            if (consultorio == null)
             {
                 return enviarBadRequest();
             }
 
-            return new
+            if (ModelState.IsValid)
             {
-                nome = "Editar c"
-            };
+                //falta adicionar verificação para que a lista de vinculos não seja alterada ao efetuar esta ação
+                _contextoBD.Consultorio.Update(consultorio);
+                _contextoBD.SaveChanges();
+            }
+
+            return enviarSuccess();
         }
 
         [HttpGet("[action]")]
         [Authorize("Bearer")]
         public Object Listar()
         {
-
-            return new
-            {
-                consultorios = new List<String>()
-            };
+            return _contextoBD.Consultorio.ToList();
         }
 
-        [HttpGet("[action]")]
-        [Authorize("Bearer")]
-        public Object Exibir()
-        {
-
-            return new
-            {
-                nome = "exibir c"
-            };
-        }
-    
-}
+    }
 }
