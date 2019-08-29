@@ -1,4 +1,5 @@
-﻿using GestaoConsultorioMedico.Models.Entidades;
+﻿using GestaoConsultorioMedico.Models.ContextoBD;
+using GestaoConsultorioMedico.Models.Entidades;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,14 @@ namespace GestaoConsultorioMedico.Controllers
     [Route("api/[controller]")]
     public class ConsultoriosController : BaseController
     {
+
+        private readonly ContextoBD _contextoBD;
+
+        public ConsultoriosController(ContextoBD contextoBD)
+        {
+            _contextoBD = contextoBD;
+        }
+
         [HttpPost]
         [Authorize("Bearer")]
         public Object Cadastrar([FromBody]Consultorio consultorio)

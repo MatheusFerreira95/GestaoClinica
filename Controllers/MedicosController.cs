@@ -1,4 +1,5 @@
-﻿using GestaoConsultorioMedico.Models.Entidades;
+﻿using GestaoConsultorioMedico.Models.ContextoBD;
+using GestaoConsultorioMedico.Models.Entidades;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,7 +11,15 @@ namespace GestaoConsultorioMedico.Controllers
 {
     [Route("api/[controller]")]
     public class MedicosController : BaseController
+
     {
+        private readonly ContextoBD _contextoBD;
+
+        public MedicosController(ContextoBD contextoBD)
+        {
+            _contextoBD = contextoBD;
+        }
+
         [HttpPost]
         [Authorize("Bearer")]
         public Object Cadastrar([FromBody]Medico medico)
@@ -44,10 +53,9 @@ namespace GestaoConsultorioMedico.Controllers
         }
 
         [HttpGet("[action]")]
-        [Authorize("Bearer")]
         public Object Listar()
         {
-
+            var lista = _contextoBD.Medico.ToList();
             var medico = new
             {
                 crm = "1234567890",
@@ -57,7 +65,7 @@ namespace GestaoConsultorioMedico.Controllers
                 consultorios = "Consultorio x",
                 acoes = new List<string>()
             };
-            medico.acoes.Add("editar"); 
+            medico.acoes.Add("editar");
             medico.acoes.Add("remover");
 
             var medicos = new List<Object>();

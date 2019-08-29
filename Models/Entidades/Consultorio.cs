@@ -7,6 +7,6 @@ namespace GestaoConsultorioMedico.Models.Entidades
 {
     public class Consultorio
     {
-        public int Id;
+        public int Id { get; set; }
     }
 }

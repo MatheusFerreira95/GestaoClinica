@@ -7,6 +7,7 @@ namespace GestaoConsultorioMedico.Models.Entidades
 {
     public class Medico
     {
-        public int Id;
+        public int Id { get; set; }
+        public string nome { get; set; }
     }
 }

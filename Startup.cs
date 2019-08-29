@@ -1,4 +1,5 @@
 using GestaoConsultorioMedico.Extensions;
+using GestaoConsultorioMedico.Models.ContextoBD;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace GestaoConsultorioMedico
 {
@@ -20,6 +22,10 @@ namespace GestaoConsultorioMedico
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<ContextoBD>(options =>
+                options.UseMySql(Configuration["ConexaoMySql:MySqlConnectionString"])
+            );
 
             services.ConfigurarCors();
 
