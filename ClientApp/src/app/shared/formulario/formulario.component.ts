@@ -1,8 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import {
   FormGroup,
   FormControl,
-  Validators,
   AbstractControlOptions,
   ValidatorFn
 } from "@angular/forms";
@@ -15,6 +14,8 @@ import { Notificacao } from "../notificacao/notificacao";
 })
 export class FormularioComponent {
   @Input() itensFormulario: ItensFormulario;
+  @Output() submeter = new EventEmitter();
+  @Output() cancelar = new EventEmitter();
   public form: FormGroup;
 
   constructor(private notificacao: Notificacao) {}
@@ -45,22 +46,15 @@ export class FormularioComponent {
       return;
     }
 
-    this.itensFormulario.componentePrincipal[this.itensFormulario.nomeOnSubmit](
-      this.form.value
-    );
-    this.form.reset();
+    this.submeter.emit(this.form);
   }
 
   public onCancelar() {
-    this.itensFormulario[this.itensFormulario.nomeOnCancelar]();
-    this.form.reset();
+    this.cancelar.emit(this.form);
   }
 }
 
 export class ItensFormulario {
-  componentePrincipal; // componente (ou tela) que utiliza o formulario.component
-  nomeOnSubmit;
-  nomeOnCancelar;
   campos: Array<Campo> = [];
   nomeBotaoCancelar: String;
   nomeBotaoSubmit: String = "Salvar";

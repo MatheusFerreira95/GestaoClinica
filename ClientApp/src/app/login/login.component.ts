@@ -18,7 +18,8 @@ export class LoginComponent {
     this.construirItensFormulario();
   }
 
-  public login(usuario) {
+  public login(formLogin) {
+    let usuario = formLogin.value;
     this.repository.requisicaoPost("Login", usuario).then(result => {
       localStorage.setItem("token", result["token"]);
       this.router.navigate(["/main"]);
@@ -27,8 +28,6 @@ export class LoginComponent {
 
   private construirItensFormulario() {
     this.itensFormulario = {
-      componentePrincipal: this,
-      nomeOnSubmit: "login",
       campos: [
         {
           id: "nome",
@@ -52,7 +51,6 @@ export class LoginComponent {
         }
       ],
       nomeBotaoSubmit: "Entrar",
-      nomeOnCancelar: undefined,
       nomeBotaoCancelar: undefined,
       style: {
         width: "40%",
