@@ -15,6 +15,13 @@ namespace GestaoConsultorioMedico.Controllers
             return "Requisição inválida.";
         }
 
+
+        public object enviarSuccess()
+        {
+            Response.StatusCode = 200;
+            return "Operação realizada com sucesso.";
+        }
+
         public object enviarUnauthorized()
         {
             Response.StatusCode = 401;

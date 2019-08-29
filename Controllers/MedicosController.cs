@@ -1,4 +1,5 @@
-﻿using GestaoConsultorioMedico.Models.Entidades;
+﻿using GestaoConsultorioMedico.Models.ContextoBD;
+using GestaoConsultorioMedico.Models.Entidades;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,73 +11,60 @@ namespace GestaoConsultorioMedico.Controllers
 {
     [Route("api/[controller]")]
     public class MedicosController : BaseController
+
     {
-        [HttpPost]
+        private readonly ContextoBD _contextoBD;
+
+        public MedicosController(ContextoBD contextoBD)
+        {
+            _contextoBD = contextoBD;
+        }
+
+        [HttpPost("[action]")]
         [Authorize("Bearer")]
         public Object Cadastrar([FromBody]Medico medico)
         {
 
-            if (medico == null || medico.Id != null)
+            if (medico == null)
             {
                 return enviarBadRequest();
             }
 
-            return new
+            if (ModelState.IsValid)
             {
-                nome = "Cadastrar"
-            };
+                //falta adicionar verificações na modelagem de médico para evitar que médicos com CRM's iguais sejam cadastrados.
+                _contextoBD.Medico.Add(medico);
+                _contextoBD.SaveChanges();
+            }
+
+            return enviarSuccess();
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         [Authorize("Bearer")]
         public Object editar([FromBody]Medico medico)
         {
 
-            if (medico == null || medico.Id == null)
+            if (medico == null)
             {
                 return enviarBadRequest();
             }
 
-            return new
+            if (ModelState.IsValid)
             {
-                nome = "Editar"
-            };
+                //falta adicionar verificação para que a lista de vinculos não seja alterada ao efetuar esta ação
+                _contextoBD.Medico.Update(medico);
+                _contextoBD.SaveChanges();
+            }
+
+            return enviarSuccess();
         }
 
         [HttpGet("[action]")]
-        [Authorize("Bearer")]
+         [Authorize("Bearer")]
         public Object Listar()
         {
-
-            var medico = new
-            {
-                crm = "1234567890",
-                nome = "Consultóri oX",
-                valorConsulta = "R$ 300,00",
-                telefone = "(37) 9 1234-1234",
-                consultorios = "Consultorio x",
-                acoes = new List<string>()
-            };
-            medico.acoes.Add("editar"); 
-            medico.acoes.Add("remover");
-
-            var medicos = new List<Object>();
-
-            medicos.Add(medico);
-
-
-            return medicos;
-        }
-
-        [HttpGet("[action]")]
-        [Authorize("Bearer")]
-        public Object Exibir()
-        {
-
-            return new
-            {
-                nome = "Listar"
-            };
+            return _contextoBD.Medico.ToList();
         }
     }
 }
