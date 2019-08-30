@@ -1,9 +1,12 @@
 <gestao-entidades
   titulo="Médicos"
   [itensFormulario]="itensFormulario"
+  [itensFormularioEdicao]="itensFormularioEdicao"
   [valorColunas]="valorColunas"
   [labelColunas]="labelColunas"
   [dados]="medicos"
   (doListar)="listarMedicos()"
-  (doSalvar)="salvar($event)"
+  (doSalvar)="cadastrar($event)"
+  (doRemover)="remover($event)"
+  (doEditar)="editar($event)"
 ></gestao-entidades>

@@ -7,12 +7,12 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 })
 export class ModalComponent {
   @Input() titulo: String;
-  @Input() abrirModalCadastro;
+  @Input() abrirModal;
   @Output() modalAcao = new EventEmitter();
   @Output() modalFechar = new EventEmitter();
 
   fechar() {
-    this.abrirModalCadastro.ok = false;
+    this.abrirModal.ok = false;
 
     this.modalFechar.emit();
   }

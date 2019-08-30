@@ -37,7 +37,7 @@ export class ConsultoriosComponent {
     });
   }
 
-  salvar(formulario) {
+  cadastrar(formulario) {
     let consultorio = formulario.value;
     this.repository
       .requisicaoPost("Consultorios/Cadastrar", consultorio)
@@ -46,6 +46,26 @@ export class ConsultoriosComponent {
         this.listarConsultorios();
       });
     formulario.reset();
+  }
+
+  editar(formulario) {
+    let consultorio = formulario.value;
+    this.repository
+      .requisicaoPost("Consultorios/Editar", consultorio)
+      .then(result => {
+        this.notificacao.exibir(result.mensagem, "sucesso");
+        this.listarConsultorios();
+      });
+    formulario.reset();
+  }
+
+  remover(consultorio) {
+    this.repository
+      .requisicaoPost("Consultorios/Remover", consultorio)
+      .then(result => {
+        this.notificacao.exibir(result.mensagem, "sucesso");
+        this.listarConsultorios();
+      });
   }
 
   private construirItensFormulario() {

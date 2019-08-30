@@ -5,5 +5,8 @@
   [labelColunas]="labelColunas"
   [dados]="consultorios"
   (doListar)="listarConsultorios()"
-  (doSalvar)="salvar($event)"
+  (doSalvar)="cadastrar($event)"
+  (doRemover)="remover($event)"
+  (doEditar)="editar($event)"
+  (doVincular)="vincular($event)"
 ></gestao-entidades>

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { ItensFormulario } from "../formulario/formulario.component";
+import { ItensFormulario, Campo } from "../formulario/formulario.component";
 
 @Component({
   selector: "gestao-entidades",
@@ -12,13 +12,32 @@ export class GestaoEntidadesComponent {
   @Input() dados;
   @Input() titulo: String;
   @Input() itensFormulario: ItensFormulario;
+  @Input() itensFormularioEdicao: ItensFormulario;
   @Output() doListar = new EventEmitter();
   @Output() doSalvar = new EventEmitter();
+  @Output() doRemover = new EventEmitter();
+  @Output() doEditar = new EventEmitter();
+  @Output() doVincular = new EventEmitter();
   abrirModalCadastro = { ok: false };
+  abrirModalEdicao = { ok: false };
 
-  constructor() {}
   onAbrirModalCadastro() {
     this.abrirModalCadastro.ok = true;
+  }
+  onAbrirModalEdicao(item) {
+    this.construirFormularioEdicao(item);
+    this.abrirModalEdicao.ok = true;
+  }
+  construirFormularioEdicao(item) {
+    this.itensFormularioEdicao.campos.forEach(campo => {
+      let chave = campo.id;
+      for (let atributo in item) {
+        if (atributo === chave) {
+          campo.valorInicial = item[atributo];
+        }
+      }
+    });
+    console.log(this.itensFormularioEdicao);
   }
 
   listar() {
@@ -30,7 +49,14 @@ export class GestaoEntidadesComponent {
     this.doSalvar.emit(formulario);
   }
 
+  remover(item) {
+    this.doRemover.emit(item);
+  }
+
   fecharModalCadastro() {
     this.abrirModalCadastro.ok = false;
+  }
+  fecharModalEdicao() {
+    this.abrirModalEdicao.ok = false;
   }
 }

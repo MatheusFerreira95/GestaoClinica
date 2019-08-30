@@ -14,6 +14,7 @@ export class MedicosComponent {
   valorColunas = ["crm", "nome", "telefone", "valorConsulta", "acoes"];
   medicos = [];
   public itensFormulario: ItensFormulario;
+  public itensFormularioEdicao: ItensFormulario;
 
   constructor(
     private repository: RepositoryService,
@@ -37,13 +38,29 @@ export class MedicosComponent {
     });
   }
 
-  salvar(formulario) {
+  cadastrar(formulario) {
     let medico = formulario.value;
     this.repository.requisicaoPost("Medicos/Cadastrar", medico).then(result => {
       this.notificacao.exibir(result.mensagem, "sucesso");
       this.listarMedicos();
     });
     formulario.reset();
+  }
+
+  editar(formulario) {
+    let medico = formulario.value;
+    this.repository.requisicaoPost("Medicos/Editar", medico).then(result => {
+      this.notificacao.exibir(result.mensagem, "sucesso");
+      this.listarMedicos();
+    });
+    formulario.reset();
+  }
+
+  remover(medico) {
+    this.repository.requisicaoPost("Medicos/Remover", medico).then(result => {
+      this.notificacao.exibir(result.mensagem, "sucesso");
+      this.listarMedicos();
+    });
   }
 
   private construirItensFormulario() {
@@ -97,5 +114,6 @@ export class MedicosComponent {
       },
       titulo: "Novo Médico"
     };
+    this.itensFormularioEdicao = { ...this.itensFormulario };
   }
 }

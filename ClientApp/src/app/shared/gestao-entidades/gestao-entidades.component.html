@@ -37,6 +37,7 @@
               <button
                 *ngIf="item.acoes && item.acoes.includes('editar')"
                 mat-icon-button
+                (click)="onAbrirModalCadastro(item)"
               >
                 <mat-icon>edit</mat-icon>
               </button>
@@ -44,6 +45,7 @@
                 *ngIf="item.acoes && item.acoes.includes('remover')"
                 mat-icon-button
                 color="warn"
+                (click)="remover(item)"
               >
                 <mat-icon>delete</mat-icon>
               </button>
@@ -68,10 +70,18 @@
   </mat-card-content>
 </mat-card>
 
-<modal titulo="Cadastro" [abrirModalCadastro]="abrirModalCadastro">
+<modal titulo="Cadastro" [abrirModal]="abrirModalCadastro">
   <formulario
     (submeter)="salvar($event)"
     (cancelar)="fecharModalCadastro($event)"
     [itensFormulario]="itensFormulario"
+  ></formulario>
+</modal>
+
+<modal titulo="Edição" [abrirModal]="abrirModalEdicao">
+  <formulario
+    (submeter)="editar($event)"
+    (cancelar)="fecharModalEdicao($event)"
+    [itensFormulario]="itensFormularioEdicao"
   ></formulario>
 </modal>
