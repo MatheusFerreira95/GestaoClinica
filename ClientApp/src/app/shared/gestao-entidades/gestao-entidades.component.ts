@@ -12,10 +12,20 @@ export class GestaoEntidadesComponent {
   @Input() dados;
   @Input() titulo: String;
   @Input() itensFormulario: ItensFormulario;
-  @Output() abrirCadastro = new EventEmitter();
+  @Output() doListar = new EventEmitter();
+  @Output() doSalvar = new EventEmitter();
+  abrirModalCadastro = { ok: false };
 
   constructor() {}
-  onAbrirCadastro() {
-    this.abrirCadastro.emit();
+  onAbrirModalCadastro() {
+    this.abrirModalCadastro.ok = true;
+  }
+
+  listar() {
+    this.doListar.emit();
+  }
+
+  salvar(evento) {
+    this.doSalvar.emit(evento);
   }
 }

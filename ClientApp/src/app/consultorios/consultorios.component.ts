@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { ModalService } from "../shared/services/modal.service";
 import { Validators } from "@angular/forms";
 import { ItensFormulario } from "../shared/formulario/formulario.component";
 
@@ -21,14 +20,8 @@ export class ConsultoriosComponent {
   ];
   public itensFormulario: ItensFormulario;
 
-  constructor(private modalService: ModalService) {}
-
   ngOnInit() {
     this.construirItensFormulario();
-  }
-
-  abrirCadastro() {
-    this.modalService.exibir(this, "retornoModal");
   }
 
   retornoModal() {
@@ -37,8 +30,6 @@ export class ConsultoriosComponent {
 
   private construirItensFormulario() {
     this.itensFormulario = {
-      componentePrincipal: this,
-      nomeOnSubmit: "salvar",
       campos: [
         {
           id: "nome",
@@ -72,7 +63,6 @@ export class ConsultoriosComponent {
         }
       ],
       nomeBotaoSubmit: "Salvar",
-      nomeOnCancelar: "cancelar",
       nomeBotaoCancelar: "Cancelar",
       style: {
         "box-shadow": "none"

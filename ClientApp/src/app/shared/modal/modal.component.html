@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="modal" [ngStyle]="abrirModalCadastro.ok && { display: 'block' }">
   <mat-card class="cabecalho">
     <mat-card-title>
       <span>Cadastro</span>
@@ -11,4 +11,7 @@
     <ng-content></ng-content>
   </div>
 </div>
-<div class="modal-background"></div>
+<div
+  class="modal-background"
+  [ngStyle]="abrirModalCadastro.ok && { display: 'block' }"
+></div>

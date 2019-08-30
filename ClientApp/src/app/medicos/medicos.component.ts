@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { ModalService } from "../shared/services/modal.service";
 import { Validators } from "@angular/forms";
 import { ItensFormulario } from "../shared/formulario/formulario.component";
 import { RepositoryService } from "../shared/services/repository.service";
@@ -29,10 +28,7 @@ export class MedicosComponent {
   medicos = [];
   public itensFormulario: ItensFormulario;
 
-  constructor(
-    private repository: RepositoryService,
-    private modalService: ModalService
-  ) {}
+  constructor(private repository: RepositoryService) {}
 
   ngOnInit() {
     this.construirItensFormulario();
@@ -71,14 +67,8 @@ export class MedicosComponent {
     });
   }
 
-  onAbrirCadastro() {
-    this.modalService.exibir(this, this.onRetornoModal);
-  }
-
   private construirItensFormulario() {
     this.itensFormulario = {
-      componentePrincipal: this,
-      nomeOnSubmit: "salvar",
       campos: [
         {
           id: "crm",
@@ -122,7 +112,6 @@ export class MedicosComponent {
         }
       ],
       nomeBotaoSubmit: "Salvar",
-      nomeOnCancelar: "cancelar",
       nomeBotaoCancelar: "Cancelar",
       style: {
         "box-shadow": "none"

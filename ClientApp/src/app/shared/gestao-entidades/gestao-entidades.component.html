@@ -2,7 +2,11 @@
   <mat-card-title>{{ titulo }}</mat-card-title>
   <mat-card-content>
     <div align="right">
-      <button mat-raised-button color="primary" (click)="onAbrirCadastro()">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onAbrirModalCadastro()"
+      >
         Cadastrar
         <mat-icon>add</mat-icon>
       </button>
@@ -71,9 +75,10 @@
 </mat-card>
 
 <modal
-  (modalSubmitFormulario)="(onModalCadastroSubmitFormulario)"
-  (modalFechar)="(onModalCadastroFechar)"
+  (modalAcao)="salvar($event)"
+  (modalFechar)="listar()"
   titulo="Cadastro"
+  [abrirModalCadastro]="abrirModalCadastro"
 >
   <formulario [itensFormulario]="itensFormulario"></formulario>
 </modal>
