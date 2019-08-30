@@ -22,7 +22,7 @@ export class MedicosComponent {
     "nome",
     "telefone",
     "valorConsulta",
-    "consultorios",
+    "vinculos",
     "acoes"
   ];
   medicos = [];

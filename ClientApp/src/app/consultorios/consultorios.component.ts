@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Validators } from "@angular/forms";
 import { ItensFormulario } from "../shared/formulario/formulario.component";
+import { RepositoryService } from "../shared/services/repository.service";
 
 @Component({
   selector: "consultorios",
@@ -10,22 +11,19 @@ import { ItensFormulario } from "../shared/formulario/formulario.component";
 export class ConsultoriosComponent {
   valorColunas = ["nome", "endereco", "telefone", "acoes"];
   labelColunas = ["nome", "endereço", "telefone", "ações"];
-  dados = [
-    {
-      nome: "Consultóri oX",
-      endereco: "Rua Professor X, numero 123, bairro Zona Sul. Lavras/MG",
-      telefone: "(37) 9 1234-1234",
-      acoes: ["editar", "remover", "vincular", "verVinculos"]
-    }
-  ];
-  public itensFormulario: ItensFormulario;
+  consultorios = [];
+  itensFormulario: ItensFormulario;
+
+  constructor(private repository: RepositoryService) {}
 
   ngOnInit() {
     this.construirItensFormulario();
   }
 
-  retornoModal() {
-    alert("retornoModal recebido");
+  listarMedicos() {
+    this.repository.requisicaoGet("Consultorios/Listar").then(result => {
+      this.consultorios = result;
+    });
   }
 
   private construirItensFormulario() {

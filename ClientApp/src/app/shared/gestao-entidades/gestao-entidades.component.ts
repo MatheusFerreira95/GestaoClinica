@@ -31,7 +31,7 @@ export class GestaoEntidadesComponent {
   }
 
   fecharModalCadastro(formulario) {
-    this.abrirModalCadastro.ok = false;
     formulario.reset();
+    this.abrirModalCadastro.ok = false;
   }
 }
