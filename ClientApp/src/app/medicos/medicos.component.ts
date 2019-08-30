@@ -10,22 +10,8 @@ import { Notificacao } from "../shared/notificacao/notificacao";
   styleUrls: ["./medicos.component.scss"]
 })
 export class MedicosComponent {
-  labelColunas = [
-    "crm",
-    "nome",
-    "telefone",
-    "Valor da Consulta",
-    "Consultórios",
-    "Ações"
-  ];
-  valorColunas = [
-    "crm",
-    "nome",
-    "telefone",
-    "valorConsulta",
-    "vinculos",
-    "acoes"
-  ];
+  labelColunas = ["crm", "nome", "telefone", "Valor da Consulta", "Ações"];
+  valorColunas = ["crm", "nome", "telefone", "valorConsulta", "acoes"];
   medicos = [];
   public itensFormulario: ItensFormulario;
 
