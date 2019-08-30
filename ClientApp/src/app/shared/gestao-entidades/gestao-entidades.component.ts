@@ -26,12 +26,11 @@ export class GestaoEntidadesComponent {
   }
 
   salvar(formulario) {
-    this.fecharModalCadastro(formulario);
+    this.fecharModalCadastro();
     this.doSalvar.emit(formulario);
   }
 
-  fecharModalCadastro(formulario) {
-    formulario.reset();
+  fecharModalCadastro() {
     this.abrirModalCadastro.ok = false;
   }
 }

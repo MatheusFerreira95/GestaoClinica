@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Validators } from "@angular/forms";
 import { ItensFormulario } from "../shared/formulario/formulario.component";
 import { RepositoryService } from "../shared/services/repository.service";
+import { Notificacao } from "../shared/notificacao/notificacao";
 
 @Component({
   selector: "consultorios",
@@ -14,16 +15,37 @@ export class ConsultoriosComponent {
   consultorios = [];
   itensFormulario: ItensFormulario;
 
-  constructor(private repository: RepositoryService) {}
+  constructor(
+    private repository: RepositoryService,
+    private notificacao: Notificacao
+  ) {}
 
   ngOnInit() {
     this.construirItensFormulario();
   }
 
-  listarMedicos() {
+  ngAfterViewInit() {
+    // Por incrível que pareça o blog do Angular recomenda o uso de timeout: https://blog.angular-university.io/angular-debugging/
+    setTimeout(() => {
+      this.listarConsultorios();
+    });
+  }
+
+  listarConsultorios() {
     this.repository.requisicaoGet("Consultorios/Listar").then(result => {
       this.consultorios = result;
     });
+  }
+
+  salvar(formulario) {
+    let consultorio = formulario.value;
+    this.repository
+      .requisicaoPost("Consultorios/Cadastrar", consultorio)
+      .then(result => {
+        this.notificacao.exibir(result.mensagem, "sucesso");
+        this.listarConsultorios();
+      });
+    formulario.reset();
   }
 
   private construirItensFormulario() {
