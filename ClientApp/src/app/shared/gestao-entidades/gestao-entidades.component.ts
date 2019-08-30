@@ -25,7 +25,13 @@ export class GestaoEntidadesComponent {
     this.doListar.emit();
   }
 
-  salvar(evento) {
-    this.doSalvar.emit(evento);
+  salvar(formulario) {
+    this.fecharModalCadastro(formulario);
+    this.doSalvar.emit(formulario);
+  }
+
+  fecharModalCadastro(formulario) {
+    this.abrirModalCadastro.ok = false;
+    formulario.reset();
   }
 }

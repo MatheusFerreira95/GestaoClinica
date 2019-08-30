@@ -74,11 +74,10 @@
   </mat-card-content>
 </mat-card>
 
-<modal
-  (modalAcao)="salvar($event)"
-  (modalFechar)="listar()"
-  titulo="Cadastro"
-  [abrirModalCadastro]="abrirModalCadastro"
->
-  <formulario [itensFormulario]="itensFormulario"></formulario>
+<modal titulo="Cadastro" [abrirModalCadastro]="abrirModalCadastro">
+  <formulario
+    (submeter)="salvar($event)"
+    (cancelar)="fecharModalCadastro($event)"
+    [itensFormulario]="itensFormulario"
+  ></formulario>
 </modal>
