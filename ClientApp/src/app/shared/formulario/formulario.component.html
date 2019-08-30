@@ -5,7 +5,7 @@
     [formGroup]="form"
     autocomplete="off"
     novalidate
-    (ngSubmit)="onSubmit(form.value)"
+    (ngSubmit)="onSubmit()"
   >
     <mat-card-content>
       <mat-form-field *ngFor="let campo of itensFormulario.campos">

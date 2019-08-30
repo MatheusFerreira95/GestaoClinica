@@ -4,6 +4,6 @@
   [valorColunas]="valorColunas"
   [labelColunas]="labelColunas"
   [dados]="medicos"
-  retornoModal="listarMedicos"
-  [contexto]="this"
+  (doListar)="listarMedicos()"
+  (doSalvar)="salvar($event)"
 ></gestao-entidades>

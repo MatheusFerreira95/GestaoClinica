@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
-import { ModalService } from "../shared/services/modal.service";
 import { Validators } from "@angular/forms";
 import { ItensFormulario } from "../shared/formulario/formulario.component";
+import { RepositoryService } from "../shared/services/repository.service";
+import { Notificacao } from "../shared/notificacao/notificacao";
 
 @Component({
   selector: "consultorios",
@@ -11,34 +12,44 @@ import { ItensFormulario } from "../shared/formulario/formulario.component";
 export class ConsultoriosComponent {
   valorColunas = ["nome", "endereco", "telefone", "acoes"];
   labelColunas = ["nome", "endereço", "telefone", "ações"];
-  dados = [
-    {
-      nome: "Consultóri oX",
-      endereco: "Rua Professor X, numero 123, bairro Zona Sul. Lavras/MG",
-      telefone: "(37) 9 1234-1234",
-      acoes: ["editar", "remover", "vincular", "verVinculos"]
-    }
-  ];
-  public itensFormulario: ItensFormulario;
+  consultorios = [];
+  itensFormulario: ItensFormulario;
 
-  constructor(private modalService: ModalService) {}
+  constructor(
+    private repository: RepositoryService,
+    private notificacao: Notificacao
+  ) {}
 
   ngOnInit() {
     this.construirItensFormulario();
   }
 
-  abrirCadastro() {
-    this.modalService.exibir(this, "retornoModal");
+  ngAfterViewInit() {
+    // Por incrível que pareça o blog do Angular recomenda o uso de timeout: https://blog.angular-university.io/angular-debugging/
+    setTimeout(() => {
+      this.listarConsultorios();
+    });
   }
 
-  retornoModal() {
-    alert("retornoModal recebido");
+  listarConsultorios() {
+    this.repository.requisicaoGet("Consultorios/Listar").then(result => {
+      this.consultorios = result;
+    });
+  }
+
+  salvar(formulario) {
+    let consultorio = formulario.value;
+    this.repository
+      .requisicaoPost("Consultorios/Cadastrar", consultorio)
+      .then(result => {
+        this.notificacao.exibir(result.mensagem, "sucesso");
+        this.listarConsultorios();
+      });
+    formulario.reset();
   }
 
   private construirItensFormulario() {
     this.itensFormulario = {
-      componentePrincipal: this,
-      nomeOnSubmit: "salvar",
       campos: [
         {
           id: "nome",
@@ -72,7 +83,6 @@ export class ConsultoriosComponent {
         }
       ],
       nomeBotaoSubmit: "Salvar",
-      nomeOnCancelar: "cancelar",
       nomeBotaoCancelar: "Cancelar",
       style: {
         "box-shadow": "none"

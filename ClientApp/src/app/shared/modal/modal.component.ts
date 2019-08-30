@@ -1,36 +1,28 @@
-import { Component, ElementRef, Input, OnInit, OnDestroy } from "@angular/core";
-import { ModalService } from "../services/modal.service";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "modal",
   templateUrl: "./modal.component.html",
   styleUrls: ["./modal.component.scss"]
 })
-export class ModalComponent implements OnInit, OnDestroy {
-  private elementoHTML: any;
+export class ModalComponent {
   @Input() titulo: String;
-
-  constructor(private modalService: ModalService, private el: ElementRef) {
-    this.elementoHTML = el.nativeElement;
-  }
-
-  ngOnInit() {
-    document.body.appendChild(this.elementoHTML);
-    this.modalService.registrar(this);
-  }
-
-  ngOnDestroy() {
-    this.elementoHTML.remove();
-  }
-
-  exibir() {
-    this.elementoHTML.style.display = "block";
-    document.body.classList.add("modal-open");
-  }
+  @Input() abrirModalCadastro;
+  @Output() modalAcao = new EventEmitter();
+  @Output() modalFechar = new EventEmitter();
 
   fechar() {
-    this.modalService.enviarRetorno();
-    this.elementoHTML.style.display = "none";
-    document.body.classList.remove("modal-open");
+    this.abrirModalCadastro.ok = false;
+
+    this.modalFechar.emit();
+  }
+
+  louco() {
+    alert("www");
+  }
+
+  acao(evento) {
+    this.modalAcao.emit(evento);
+    this.fechar();
   }
 }

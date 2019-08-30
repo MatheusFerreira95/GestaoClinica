@@ -2,4 +2,7 @@
   <mat-card-title>Sistema de Gestão de Consultório Médico</mat-card-title>
 </mat-card>
 
-<formulario [itensFormulario]="itensFormulario"></formulario>
+<formulario
+  (submeter)="login($event)"
+  [itensFormulario]="itensFormulario"
+></formulario>

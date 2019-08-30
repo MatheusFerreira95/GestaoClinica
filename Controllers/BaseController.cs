@@ -12,20 +12,29 @@ namespace GestaoConsultorioMedico.Controllers
         public object enviarBadRequest()
         {
             Response.StatusCode = 400;
-            return "Requisição inválida.";
+            return new
+            {
+                mensagem = "Requisição inválida."
+            };
         }
 
 
         public object enviarSuccess()
         {
             Response.StatusCode = 200;
-            return "Operação realizada com sucesso.";
+            return new
+            {
+                mensagem = "Operação realizada com sucesso."
+            };
         }
 
         public object enviarUnauthorized()
         {
             Response.StatusCode = 401;
-            return "Usuário não autenticado.";
+            return new
+            {
+                mensagem = "Usuário não autenticado."
+            };
         }
     }
 }

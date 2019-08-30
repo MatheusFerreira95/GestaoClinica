@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
-import { ModalService } from "../shared/services/modal.service";
 import { Validators } from "@angular/forms";
 import { ItensFormulario } from "../shared/formulario/formulario.component";
 import { RepositoryService } from "../shared/services/repository.service";
+import { Notificacao } from "../shared/notificacao/notificacao";
 
 @Component({
   selector: "medicos",
@@ -23,15 +23,15 @@ export class MedicosComponent {
     "nome",
     "telefone",
     "valorConsulta",
-    "consultorios",
+    "vinculos",
     "acoes"
   ];
   medicos = [];
   public itensFormulario: ItensFormulario;
 
   constructor(
-    private modalService: ModalService,
-    private repository: RepositoryService
+    private repository: RepositoryService,
+    private notificacao: Notificacao
   ) {}
 
   ngOnInit() {
@@ -51,54 +51,60 @@ export class MedicosComponent {
     });
   }
 
+  salvar(formulario) {
+    let medico = formulario.value;
+    this.repository.requisicaoPost("Medicos/Cadastrar", medico).then(result => {
+      this.notificacao.exibir(result.mensagem, "sucesso");
+      this.listarMedicos();
+    });
+    formulario.reset();
+  }
+
   private construirItensFormulario() {
     this.itensFormulario = {
-      componentePrincipal: this,
-      nomeOnSubmit: "salvar",
       campos: [
         {
-          id: "crm",
+          id: "CRM",
           type: "text",
           mask: "",
           validadores: [Validators.required, Validators.maxLength(10)],
           placeholder: "CRM",
-          nome: "crm",
-          formControlName: "crm",
+          nome: "CRM",
+          formControlName: "CRM",
           valorInicial: ""
         },
         {
-          id: "nome",
+          id: "Nome",
           type: "text",
           mask: "",
           validadores: [Validators.maxLength(100)],
           placeholder: "Nome",
-          nome: "nome",
-          formControlName: "nome",
+          nome: "Nome",
+          formControlName: "Nome",
           valorInicial: ""
         },
         {
-          id: "telefone",
+          id: "Telefone",
           type: "text",
           mask: "(00) 0000-0000",
           validadores: [Validators.maxLength(20)],
           placeholder: "Telefone",
-          nome: "telefone",
-          formControlName: "telefone",
+          nome: "Telefone",
+          formControlName: "Telefone",
           valorInicial: ""
         },
         {
-          id: "valorConsulta",
+          id: "ValorConsulta",
           type: "text",
           mask: "0*,00",
           validadores: [],
           placeholder: "Valor da Consulta (R$)",
-          nome: "valorConsulta",
-          formControlName: "valorConsulta",
+          nome: "ValorConsulta",
+          formControlName: "ValorConsulta",
           valorInicial: ""
         }
       ],
       nomeBotaoSubmit: "Salvar",
-      nomeOnCancelar: "cancelar",
       nomeBotaoCancelar: "Cancelar",
       style: {
         "box-shadow": "none"
