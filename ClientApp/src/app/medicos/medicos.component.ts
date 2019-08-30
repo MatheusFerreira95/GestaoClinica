@@ -114,6 +114,5 @@ export class MedicosComponent {
       },
       titulo: "Novo Médico"
     };
-    this.itensFormularioEdicao = { ...this.itensFormulario };
   }
 }

@@ -20,6 +20,7 @@ export class GestaoEntidadesComponent {
   @Output() doVincular = new EventEmitter();
   abrirModalCadastro = { ok: false };
   abrirModalEdicao = { ok: false };
+  idItemEdicao = 0;
 
   onAbrirModalCadastro() {
     this.abrirModalCadastro.ok = true;
@@ -29,15 +30,18 @@ export class GestaoEntidadesComponent {
     this.abrirModalEdicao.ok = true;
   }
   construirFormularioEdicao(item) {
+    this.itensFormularioEdicao = { ...this.itensFormulario };
+
     this.itensFormularioEdicao.campos.forEach(campo => {
       let chave = campo.id;
       for (let atributo in item) {
-        if (atributo === chave) {
+        if (atributo.toUpperCase() === chave.toUpperCase()) {
           campo.valorInicial = item[atributo];
         }
       }
     });
-    console.log(this.itensFormularioEdicao);
+    this.itensFormularioEdicao.titulo = "";
+    this.idItemEdicao = item.id;
   }
 
   listar() {
@@ -47,6 +51,12 @@ export class GestaoEntidadesComponent {
   salvar(formulario) {
     this.fecharModalCadastro();
     this.doSalvar.emit(formulario);
+  }
+
+  editar(formulario) {
+    this.fecharModalEdicao();
+    formulario.value.id = this.idItemEdicao;
+    this.doEditar.emit(formulario);
   }
 
   remover(item) {

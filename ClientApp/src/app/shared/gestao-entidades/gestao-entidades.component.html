@@ -37,7 +37,7 @@
               <button
                 *ngIf="item.acoes && item.acoes.includes('editar')"
                 mat-icon-button
-                (click)="onAbrirModalCadastro(item)"
+                (click)="onAbrirModalEdicao(item)"
               >
                 <mat-icon>edit</mat-icon>
               </button>
@@ -80,6 +80,7 @@
 
 <modal titulo="Edição" [abrirModal]="abrirModalEdicao">
   <formulario
+    *ngIf="abrirModalEdicao.ok"
     (submeter)="editar($event)"
     (cancelar)="fecharModalEdicao($event)"
     [itensFormulario]="itensFormularioEdicao"
