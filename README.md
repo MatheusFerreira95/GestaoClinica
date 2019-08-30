@@ -26,3 +26,12 @@ Acesse o diretório **raiz** e execute os seguintes comandos:
 ## Executar testes unitários
 
 Desculpe... Em desenvolvimento...
+
+## Informações importantes
+
+Você pode precisar inserir variáveis de ambiente para usar os comandos `dotnet`. A string do banco de dados está configurada como `root:root` e você pode alterá-la em `appsettings`caso tenha interesse. Ressalto que a aplicação se encarregará de criar o banco de dados, caso ele não exista.
+
+| Comando | Descrição |
+| ------- | ----------- |
+| `SET ASPNETCORE_Environment=Development` | Inserindo variável de ambiente em terminal (ambiente windows) |
+| `export ASPNETCORE_Environment=Development` | Inserindo variável de ambiente em terminal (ambiente linux) |
