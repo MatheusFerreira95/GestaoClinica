@@ -42,7 +42,7 @@ namespace GestaoConsultorioMedico.Controllers
 
         [HttpPost("[action]")]
         [Authorize("Bearer")]
-        public Object editar([FromBody]Consultorio consultorio)
+        public Object Editar([FromBody]Consultorio consultorio)
         {
 
             if (consultorio == null)
@@ -64,6 +64,23 @@ namespace GestaoConsultorioMedico.Controllers
         public Object Listar()
         {
             return _contextoBD.Consultorio.ToList();
+        }
+
+        [HttpPost("[action]")]
+        [Authorize("Bearer")]
+        public Object Remover([FromBody]Consultorio consultorio)
+        {
+
+            if (consultorio == null)
+            {
+                return enviarBadRequest();
+            }
+
+            _contextoBD.Consultorio.Remove(consultorio);
+            _contextoBD.SaveChanges();
+
+
+            return enviarSuccess();
         }
 
     }

@@ -42,7 +42,7 @@ namespace GestaoConsultorioMedico.Controllers
 
         [HttpPost("[action]")]
         [Authorize("Bearer")]
-        public Object editar([FromBody]Medico medico)
+        public Object Editar([FromBody]Medico medico)
         {
 
             if (medico == null)
@@ -61,10 +61,26 @@ namespace GestaoConsultorioMedico.Controllers
         }
 
         [HttpGet("[action]")]
-         [Authorize("Bearer")]
+        [Authorize("Bearer")]
         public Object Listar()
         {
             return _contextoBD.Medico.ToList();
+        }
+
+        [HttpPost("[action]")]
+        [Authorize("Bearer")]
+        public Object Remover([FromBody]Medico medico)
+        {
+
+            if (medico == null)
+            {
+                return enviarBadRequest();
+            }
+
+            _contextoBD.Medico.Remove(medico);
+            _contextoBD.SaveChanges();
+
+            return enviarSuccess();
         }
     }
 }
